@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassin Ragab | AI Engineer</title>
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font for heavy impact -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Transition Curtain -->
+    <div class="transition-curtain">
+        <svg viewBox="0 0 1000 350" preserveAspectRatio="xMidYMid meet">
+            <text id="curtain-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">LOADING</text>
+        </svg>
+    </div>
+
+    <!-- Mobile Nav Controls -->
+    <div class="mobile-nav-controls">
+        <div class="nav-nudge" id="nav-nudge">Use arrows to navigate</div>
+        <button class="nav-btn up-btn" id="mobile-up" disabled>&#x2191;</button>
+        <button class="nav-btn down-btn" id="mobile-down">&#x2193;</button>
+    </div>
+
+
+    <!-- ═══ PRELOADER ════════════════════════════════════════════ -->
+
+
+    <!-- [SCROLL MODE TOGGLE - DISABLED]
+    <button id="scroll-mode-toggle" class="scroll-mode-btn" aria-label="Toggle Scroll Mode">
+        <span class="btn-icon">◈</span>
+        <span class="btn-text">DYNAMIC</span>
+    </button>
+    -->
+
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-counter" id="preloader-counter">000</div>
+            <div class="preloader-name">
+                <span class="preloader-name-line">YASSIN</span>
+                <span class="preloader-name-line preloader-name-stroke">RAGAB</span>
+            </div>
+            <div class="preloader-bar-track">
+                <div class="preloader-bar-fill" id="preloader-bar"></div>
+            </div>
+            <p class="preloader-label">INITIALIZING PORTFOLIO</p>
+        </div>
+    </div>
+    <!-- ══════════════════════════════════════════════════════════ -->
+
+    <!-- Interactive AI Neural Canvas Background -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Fixed Desktop Nav (hidden until user scrolls past hero) -->
+    <nav id="sticky-nav">
+        <ul>
+            <li><a href="#home" class="nav-link" data-index="0">Home</a></li>
+            <li><a href="#about" class="nav-link" data-index="1">Profile</a></li>
+            <li><a href="#experience" class="nav-link" data-index="2">Experience</a></li>
+            <li><a href="#projects" class="nav-link" data-index="3">Projects</a></li>
+            <li><a href="#skills" class="nav-link" data-index="4">Capabilities</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Hero Section -->
+            <section class="hero panel" id="home">
+                <!-- Using original hero background with technical overlay -->
+                <div class="hero-bg-container">
+                    <img src="./img/bg-hero3.JPG" class="hero-bg-img" alt="Background">
+                    <div class="hero-overlay"></div>
+                </div>
+
+                <div class="hero-content">
+                    <div class="reveal-mask">
+                        <h1 class="hero-title glitch-layered">YASSIN</h1>
+                    </div>
+                    <div class="hero-spotlight-wrapper">
+                        <div class="reveal-mask">
+                            <h1 class="hero-title text-stroke">RAGAB</h1>
+                        </div>
+                        <!-- Glow layer: same text, fully white, masked to mouse position -->
+                        <h1 class="hero-title hero-glow-layer" aria-hidden="true">RAGAB</h1>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Socials (Hero) -->
+                <div class="hero-socials social-sidebar" id="hero-social-sidebar">
+                    <a href="https://github.com/yvs1n" target="_blank" class="social-link" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-github">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/yassinr" target="_blank" class="social-link" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-linkedin">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/yvs1n_/" target="_blank" class="social-link"
+                        aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-instagram">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                    </a>
+                    <div class="social-link contact-trigger" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-mail">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator" id="scroll-down-btn">
+                    <span>Scroll</span>
+                    <div class="scroll-line"></div>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about panel" id="about">
+                <div class="container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">01 / Profile</h2>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <p class="split-lines headline">
+                                I don't just write code. I build second brains.
+                            </p>
+                            <p class="split-lines body-text">
+                                Greetings. I'm Yassin Ragab. By day, I'm a student leader at Gems WSR; by night, I'm
+                                engineering AI systems that act as intelligent right-hand helpers, allowing us to
+                                achieve things we once thought were unimaginable.
+                            </p>
+                            <p class="split-lines body-text">
+                                My engineering philosophy is brutally effective: I take massive, complex problems,
+                                shatter them into microscopic pieces to understand their root, map out the architecture
+                                in my head, and execute flawlessly from the ground up.
+                            </p>
+                            <p class="split-lines body-text">
+                                Whether I'm scaling a viral digital strategy to 434k+ views, engineering real-time state
+                                management for companion apps, or deploying interactive curriculum hubs, my creativity
+                                knows no bounds. I don't just want to be an AI Engineer—I want to be the one designing
+                                the tools that make the tools.
+                            </p>
+                            <a href="#projects" class="magnetic-btn nav-link mt-4" data-index="3">Explore My Work
+                                <span>&#x2192;</span></a>
+                        </div>
+                        <div class="about-stats" id="sidebar-stats">
+                            <div class="system-console">
+                                <div class="console-header">
+                                    <span class="console-dot red"></span>
+                                    <span class="console-dot yellow"></span>
+                                    <span class="console-dot green"></span>
+                                    <span class="console-title">ragab_core.sh</span>
+                                </div>
+                                <div class="console-body">
+                                    <span id="typewriter-text"></span><span class="console-cursor">&nbsp;</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-box">
+                                <h3 class="stat-num">2026</h3>
+                                <p>Cohort</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3 class="stat-num">434K+</h3>
+                                <p>Digital Reach</p>
+                            </div>
+                            <div class="stat-box mt-4">
+                                <h3 class="stat-num">15+</h3>
+                                <p>Systems Deployed</p>
+                            </div>
+                            <div class="stat-box mt-4">
+                                <h3 class="stat-num">+6</h3>
+                                <p>Years Engaged</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience panel" id="experience">
+                <div class="container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">02 / Experience</h2>
+                    </div>
+
+                    <div class="timeline-list">
+
+                        <!-- Timeline Item -->
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Feb 2026 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Teacher Assistant (Stats)</h3>
+                                <p class="company">GEMS Westminster School</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Specialized in S1 support (probability, discrete random variables). Moderated virtual
+                                    sessions and evaluated student assessments for statistical methodology.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Feb 2026 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Teacher Assistant (Physics)</h3>
+                                <p class="company">GEMS Westminster School</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Served as primary mentor for advanced physics principles (Circular Motion, Fields).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Jan 2026 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Deputy Head Boy</h3>
+                                <p class="company">GEMS Westminster School</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Spearheaded digital brand identity. Launched viral TikTok strategy to 434k+ views.
+                                    Pioneered generative AI for photo restoration and automated Google Calendar
+                                    integrations for the 2026 cohort.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item -->
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Jun 2022 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Digital Media Team</h3>
+                                <p class="company">GEMS Westminster School</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>End-to-end video production, including advanced keyframe animation and motion
+                                    graphics. Established visual brand identity and managed Instagram channel as an
+                                    internal communications hub.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item (SSFIM) -->
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">2023 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Team Lead</h3>
+                                <p class="company">SSFIM Project</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>I had the privilege of leading SSFIM, where I had the opportunity to showcase our
+                                    project development and technical skills.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects panel" id="projects">
+                <div class="container marquee-container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">03 / Selected Projects</h2>
+                    </div>
+
+                    <div class="projects-list">
+                        <!-- Project 01 -->
+                        <div class="project-row fade-up" data-cursor-img="./img/british-council.jpg">
+                            <a href="https://bc101.pages.dev/" target="_blank" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>British Curriculum Hub</h3>
+                                <p>Educational platform with an interactive Page Summarizer</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/bc101/" target="_blank" class="github-subtle-link"
+                                    aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-github">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+
+                        <!-- Project 02 -->
+                        <div class="project-row fade-up" data-cursor-img="./img/spy-game.jpg"
+                            style="animation-delay: 0.1s;">
+                            <a href="https://spy-game-0pla.onrender.com/" target="_blank"
+                                class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>Spy Game Companion</h3>
+                                <p>Mobile app with real-time persistent session handling</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/spygame" target="_blank" class="github-subtle-link"
+                                    aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-github">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+
+                        <!-- Project 03 -->
+                        <div class="project-row fade-up" data-cursor-img="./img/elementa.jpg"
+                            style="animation-delay: 0.2s;">
+                            <a href="https://elementaa.vercel.app/" target="_blank" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>Elementa</h3>
+                                <p>Dynamic digital web experience and architectural platform</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/elementa" target="_blank" class="github-subtle-link"
+                                    aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-github">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Archival Projects Grid -->
+                    <div class="archive-grid">
+                        <a href="https://wsrexpo.netlify.app" target="_blank" class="archive-item magnetic-btn">WSR @
+                            EXPO</a>
+                        <a href="https://tranz.pages.dev" target="_blank" class="archive-item magnetic-btn">TranZ
+                            (CodeX)</a>
+                        <a href="https://fundfair.netlify.app" target="_blank" class="archive-item magnetic-btn">Fund
+                            Fair</a>
+                        <a href="https://onlinesafety.netlify.app/" target="_blank"
+                            class="archive-item magnetic-btn">Online Safety in WSR</a>
+                        <a href="https://flapbirdy.netlify.app/" target="_blank"
+                            class="archive-item magnetic-btn">Flappy Bird Web</a>
+                        <a href="https://cacluater.netlify.app" target="_blank"
+                            class="archive-item magnetic-btn">Calculator Web App</a>
+                        <a href="https://noteus.netlify.app" target="_blank" class="archive-item magnetic-btn">Note
+                            Us</a>
+                        <a href="https://t2z.netlify.app" target="_blank" class="archive-item magnetic-btn">Text 2
+                            Speech</a>
+                        <a href="https://qrmake.netlify.app" target="_blank" class="archive-item magnetic-btn">QR Code
+                            Maker</a>
+                        <a href="https://tranzlator.netlify.app/" target="_blank"
+                            class="archive-item magnetic-btn">Language Translator</a>
+                        <a href="https://clockz.netlify.app/" target="_blank" class="archive-item magnetic-btn">Analog
+                            Clock Simulation</a>
+                        <a href="https://zolar.netlify.app/" target="_blank"
+                            class="archive-item magnetic-btn">Interactive Solar System</a>
+                        <a href="https://pakman.netlify.app/" target="_blank" class="archive-item magnetic-btn">Pac-Man
+                            Clone</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills & Certs Section -->
+            <section class="skills panel" id="skills">
+                <div class="container marquee-container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">04 / Capabilities</h2>
+                    </div>
+
+                    <div class="skills-wrapper">
+                        <!-- Technical Stack -->
+                        <div class="magnetic-skill">Node.js Ecosystem</div>
+                        <div class="magnetic-skill">Serverless Architecture</div>
+                        <div class="magnetic-skill">WebSockets</div>
+                        <div class="magnetic-skill">RESTful APIs</div>
+                        <div class="magnetic-skill">Firebase backend</div>
+                        <div class="magnetic-skill">Cloud Firestore</div>
+                        <div class="magnetic-skill">Session Persistence</div>
+                        <div class="magnetic-skill">GSAP & Lenis</div>
+                        <div class="magnetic-skill">Three.js</div>
+                        <div class="magnetic-skill">AI Automation</div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Education & Footer -->
+            <section class="education panel" id="education">
+                <div class="container">
+                    <div class="edu-card">
+                        <div class="edu-content">
+                            <h2>AI Engineering <br>Student</h2>
+                            <div class="edu-meta">
+                                <p><strong>GEMS Education</strong><br>Sep 2019 — Jul 2026</p>
+                            </div>
+                            <p class="edu-desc">Focusing on rigorous academic programs and practical AI infrastructure,
+                                preparing for an innovative career as an AI Engineer.</p>
+                        </div>
+                    </div>
+
+                    <footer class="footer" style="text-align: left; align-items: flex-start; margin-top: 2rem;">
+                        <div class="footer-signature"
+                            style="position: relative; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 3rem;">
+                            <div class="reveal-mask">
+                                <h1 class="hero-title glitch-layered"
+                                    style="font-size: clamp(2rem, 7.5vw, 6rem); margin-bottom: 0;">YASSIN</h1>
+                            </div>
+                            <div class="hero-spotlight-wrapper">
+                                <div class="reveal-mask">
+                                    <h1 class="hero-title text-stroke" style="font-size: clamp(2rem, 7.5vw, 6rem);">
+                                        RAGAB</h1>
+                                </div>
+                                <h1 class="hero-title hero-glow-layer" aria-hidden="true"
+                                    style="font-size: clamp(2rem, 7.5vw, 6rem);">RAGAB</h1>
+                            </div>
+                        </div>
+
+                        <div class="footer-action-row">
+                            <div class="footer-col contact-col">
+                                <span id="open-contact-btn" class="magnetic-link">Initiate Contact ↗</span>
+                                <div class="contact-email">yassinragab2008@gmail.com</div>
+                                <!-- Mobile Only: Sensor Sync -->
+                                <div class="mobile-only sensor-sync">
+                                    <button onclick="enableGyro()" class="magnetic-link">SYNC SENSORS ↻</button>
+                                </div>
+                            </div>
+                            <div class="footer-col links-col">
+                                <div class="text-links">
+                                    <a href="https://linkedin.com/in/yassinr" target="_blank"
+                                        class="magnetic-link">LinkedIn</a>
+                                    <a href="../assets/cv.pdf" target="_blank" class="magnetic-link">Download CV</a>
+                                </div>
+                                <div class="footer-socials">
+                                    <a href="https://github.com/yvs1n" target="_blank" class="social-link magnetic-item"
+                                        aria-label="GitHub">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                                            <path
+                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.instagram.com/yvs1n_/" target="_blank"
+                                        class="social-link magnetic-item" aria-label="Instagram">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-instagram">
+                                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-img-container">
+        <img class="cursor-img" src="" alt="Project Preview">
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Terminal / Contact</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="contact-form" action="https://formspree.io/f/xbloobvk" method="POST">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject" required>
+                </div>
+                <div class="input-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn magnetic-btn">Send Transmission <span>&#x2192;</span></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+
+    <!-- Success Notification Modal -->
+    <div id="success-modal" class="modal-overlay" style="z-index: 10001;">
+        <div class="modal-content success-content" style="max-width: 400px; text-align: center; padding: 3rem 2rem;">
+            <div class="success-icon" style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">✓</div>
+            <h2 style="margin-bottom: 1rem; letter-spacing: 2px;">TRANSMISSION RECEIVED</h2>
+            <p style="color: #999; margin-bottom: 2rem; font-family: 'Space Mono', monospace; font-size: 0.9rem;">Your
+                message has been decrypted and successfully rerouted to our servers.</p>
+            <button id="close-success-btn" class="magnetic-btn" style="width: 100%;">RETURN TO SITE</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
