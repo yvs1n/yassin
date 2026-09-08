@@ -524,9 +524,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Terminal Typing Animation
     const terminalLines = [
         "> initializing_second_brain.sh...",
-        "> shattering_complex_problems... [OK]",
-        "> locating_root_cause()... found.",
-        "> architecting_solution...",
+        "> connecting_uos_comp_eng_network... [OK]",
+        "> digital_reach = 500000+; [VERIFIED]",
+        "> deploying_elementa_and_bc101...",
         "> executing_flawlessly.exe",
         "> creativity_bounds = null;"
     ];
@@ -572,6 +572,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Hero entrance fires AFTER preloader exits
 function triggerHeroAnimations() {
+    gsap.from(".role-badge", {
+        opacity: 0,
+        y: 15,
+        duration: 1,
+        stagger: 0.12,
+        ease: "power3.out",
+        delay: 0.3
+    });
+
     gsap.from(".scroll-indicator", {
         opacity: 0,
         y: 20,
@@ -666,7 +675,7 @@ const curtainText = document.getElementById('curtain-text');
 const upBtn = document.getElementById('mobile-up');
 const downBtn = document.getElementById('mobile-down');
 
-const sectionTitles = ["HOME", "PROFILE", "EXPERIENCE", "PROJECTS", "CAPABILITIES", "FOOTER"];
+const sectionTitles = ["HOME", "PROFILE", "EXPERIENCE", "PROJECTS", "CAPABILITIES", "EDUCATION"];
 let currentIndex = 0;
 let isAnimating = false;
 let navigationCooldownUntil = 0;
