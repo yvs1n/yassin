@@ -1315,8 +1315,10 @@ body.is-transitioning {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(5, 5, 5, 0.85); /* 85% translucent */
-    backdrop-filter: blur(25px); /* Strong glass frost effect */
+    /* Near-opaque instead of a 25px live blur: the blur had to be recomputed
+       every frame while the curtain slid, which made transitions stutter. */
+    background-color: rgba(5, 5, 5, 0.97);
+    will-change: transform;
     z-index: 9999;
     display: none; /* Changed from hidden to display logic controlled by JS */
     opacity: 0;
@@ -1758,6 +1760,8 @@ body.is-transitioning {
 
 /* Profile portrait */
 .about-portrait {
+    width: 100%;
+    box-sizing: border-box;
     margin: 0 0 2rem;
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -1772,9 +1776,6 @@ body.is-transitioning {
     height: 100%;
     object-fit: cover;
     object-position: center top;
-}
-@media (max-width: 900px) {
-    .about-portrait { max-width: 320px; }
 }
 
 /* Elements that became real <button>s keep their old look */
@@ -1802,8 +1803,8 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* Respect the system "reduce motion" setting */
-@media (prefers-reduced-motion: reduce) {
+/* Respect the system "reduce motion" setting on touch devices only */
+@media (prefers-reduced-motion: reduce) and (pointer: coarse) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;

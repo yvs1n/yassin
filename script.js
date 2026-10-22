@@ -75,7 +75,8 @@
     document.addEventListener('DOMContentLoaded', () => { target = 100; });
 })();
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Only honour the system "reduce motion" setting on touch devices (phones/tablets)
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce) and (pointer: coarse)').matches;
 
 // Fade the hero photo in once it has arrived
 (function () {
@@ -100,7 +101,7 @@ camera.position.z = isMobile ? 120 : 200; // Zoom in more on mobile (120 vs 200)
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
 // ── Particle Setup ──────────────────────────────────────────────
 const PARTICLE_COUNT = 180;
@@ -332,8 +333,13 @@ function renderFrame(move) {
     }
 
     pointCloud.geometry.attributes.position.needsUpdate = true;
-    neuronBuf.needsUpdate = true;
-    dendriteBuf.needsUpdate = true;
+    // Only upload the part of each buffer that is in use this frame
+    neuronBuf.updateRange.offset = 0;
+    neuronBuf.updateRange.count = nLen;
+    neuronBuf.needsUpdate = nLen > 0;
+    dendriteBuf.updateRange.offset = 0;
+    dendriteBuf.updateRange.count = dLen;
+    dendriteBuf.needsUpdate = dLen > 0;
     neuronLineGeo.setDrawRange(0, nLen / 3);
     dendriteLineGeo.setDrawRange(0, dLen / 3);
 
