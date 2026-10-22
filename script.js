@@ -430,6 +430,28 @@ document.addEventListener('DOMContentLoaded', function () {
         let hasMoved = false;
         let cursorRunning = false;
 
+        // Preview sits up and to the right of the pointer so it never covers it
+        const IMG_OFFSET_X = 150;
+        const IMG_OFFSET_Y = -120;
+
+        // GSAP owns the whole transform (position + scale) of both elements.
+        // Writing style.transform by hand here used to fight GSAP's scale tweens,
+        // which made the preview flash at the corner of the screen.
+        gsap.set(cursorDot, { xPercent: -50, yPercent: -50, x: posDot.x, y: posDot.y });
+        gsap.set(cursorImgContainer, { xPercent: -50, yPercent: -50, x: posImg.x, y: posImg.y, scale: 0.3 });
+        const setDotX = gsap.quickSetter(cursorDot, 'x', 'px');
+        const setDotY = gsap.quickSetter(cursorDot, 'y', 'px');
+        const setImgX = gsap.quickSetter(cursorImgContainer, 'x', 'px');
+        const setImgY = gsap.quickSetter(cursorImgContainer, 'y', 'px');
+
+        // Put the preview exactly where it belongs before it fades in
+        function snapPreviewToCursor() {
+            posImg.x = mouse.x + IMG_OFFSET_X;
+            posImg.y = mouse.y + IMG_OFFSET_Y;
+            setImgX(posImg.x);
+            setImgY(posImg.y);
+        }
+
         // The cursor loop only runs while something is still moving
         function startCursor() {
             if (cursorRunning) return;
@@ -508,14 +530,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 // FIRST REVEAL
                 cursorImg.src = newSrc;
                 activeProjectSrc = newSrc;
-                gsap.to(cursorImgContainer, { 
+                if (cursorDot) cursorDot.classList.add('img-active');
+                snapPreviewToCursor();
+                gsap.fromTo(cursorImgContainer, { opacity: 0, scale: 0.3 }, {
                     opacity: 0.9, 
                     scale: 1, 
                     duration: 0.45, 
                     ease: "power2.out",
-                    overwrite: true 
+                    overwrite: true
                 });
-                if (cursorDot) cursorDot.classList.add('img-active');
             }
         };
 
@@ -578,20 +601,18 @@ document.addEventListener('DOMContentLoaded', function () {
             
             if (isImgActive) {
                 // Offset to top-right: clear the actual click point
-                targetX += 150; 
-                targetY -= 120;
+                targetX += IMG_OFFSET_X;
+                targetY += IMG_OFFSET_Y;
             }
-            
+
             // Lag factor for image (creates the "kinetic" feel)
             posImg.x += (targetX - posImg.x) * 0.1;
             posImg.y += (targetY - posImg.y) * 0.1;
 
-            if (cursorDot) {
-                cursorDot.style.transform = `translate3d(${posDot.x}px, ${posDot.y}px, 0) translate3d(-50%, -50%, 0)`;
-            }
-            if (cursorImgContainer) {
-                cursorImgContainer.style.transform = `translate3d(${posImg.x}px, ${posImg.y}px, 0) translate3d(-50%, -50%, 0)`;
-            }
+            setDotX(posDot.x);
+            setDotY(posDot.y);
+            setImgX(posImg.x);
+            setImgY(posImg.y);
 
             const settled = Math.abs(mouse.x - posDot.x) < 0.1 && Math.abs(mouse.y - posDot.y) < 0.1 &&
                             Math.abs(targetX - posImg.x) < 0.1 && Math.abs(targetY - posImg.y) < 0.1;

@@ -1164,8 +1164,7 @@ body.classic-scroll .transition-curtain {
     z-index: 9998;
     overflow: hidden;
     opacity: 0;
-    scale: 0.3;
-    border-radius: 8px;
+    border-radius: 8px; /* position and scale are set by GSAP in script.js */
 }
 
 .cursor-img-container img {
@@ -1315,9 +1314,9 @@ body.is-transitioning {
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* Near-opaque instead of a 25px live blur: the blur had to be recomputed
+    /* Solid instead of a 25px live blur: the blur had to be recomputed
        every frame while the curtain slid, which made transitions stutter. */
-    background-color: rgba(5, 5, 5, 0.97);
+    background-color: var(--bg);
     will-change: transform;
     z-index: 9999;
     display: none; /* Changed from hidden to display logic controlled by JS */
@@ -1810,5 +1809,23 @@ textarea:focus-visible {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* Hero always exactly fills the screen: no section padding, no inner scroll.
+   The name scales with height too, so it fits on short laptop screens. */
+.hero.panel {
+    height: 100vh;
+    height: 100dvh;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+.hero-content .hero-title {
+    font-size: clamp(3.2rem, min(12vw, 24vh), 15rem);
+}
+@media (max-width: 900px) {
+    .hero-content .hero-title {
+        font-size: clamp(3.2rem, min(15vw, 16vh), 6rem);
     }
 }
