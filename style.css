@@ -1746,3 +1746,68 @@ body.is-transitioning {
         gap: 1.5rem;
     }
 }
+
+/* ═══ v3.0 additions ═══════════════════════════════════════════ */
+
+/* Hero photo fades in once downloaded (the loader no longer waits for it) */
+.hero-bg-img {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+.hero-bg-img.is-loaded { opacity: 1; }
+
+/* Profile portrait */
+.about-portrait {
+    margin: 0 0 2rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--surface);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+.about-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+@media (max-width: 900px) {
+    .about-portrait { max-width: 320px; }
+}
+
+/* Elements that became real <button>s keep their old look */
+button.social-link,
+#open-contact-btn,
+button.close-modal {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+button.social-link { color: var(--secondary); }
+#open-contact-btn { color: var(--primary); text-transform: uppercase; }
+button.close-modal { font-size: 2rem; line-height: 1; color: var(--secondary); }
+button.close-modal:hover { color: var(--primary); }
+
+/* Visible focus ring for keyboard users only */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Respect the system "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -24,7 +24,8 @@
     <meta name="color-scheme" content="dark">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="./img/favicon-48.png">
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
 
     <!-- Open Graph / Facebook / LinkedIn / Discord -->
     <meta property="og:type" content="website">
@@ -34,8 +35,10 @@
     <meta property="og:title" content="Yassin Mohamed Ragab | Computer Engineering & AI Engineer">
     <meta property="og:description"
         content="Official portfolio of Yassin Mohamed Ragab — Computer Engineering at University of Sharjah, Full-Stack Developer, and AI Engineer.">
-    <meta property="og:image" content="https://yassinr.is-a.dev/img/bg-hero3.JPG">
-    <meta property="og:image:alt" content="Yassin Mohamed Ragab Portfolio Banner">
+    <meta property="og:image" content="https://yassinr.is-a.dev/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portrait of Yassin Mohamed Ragab">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +46,8 @@
     <meta name="twitter:title" content="Yassin Mohamed Ragab | Computer Engineering & AI Engineer">
     <meta name="twitter:description"
         content="Official portfolio of Yassin Mohamed Ragab — Computer Engineering at University of Sharjah, Full-Stack Developer, and AI Engineer.">
-    <meta name="twitter:image" content="https://yassinr.is-a.dev/img/bg-hero3.JPG">
+    <meta name="twitter:image" content="https://yassinr.is-a.dev/img/og-image.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Yassin Mohamed Ragab">
 
     <!-- JSON-LD Structured Data (Schema.org) for Google Knowledge Graph & Rich Snippets -->
     <script type="application/ld+json">
@@ -78,7 +82,7 @@
           "name": "Yassin Mohamed Ragab",
           "alternateName": ["Yassin Ragab", "yvs1n"],
           "url": "https://yassinr.is-a.dev/",
-          "image": "https://yassinr.is-a.dev/img/bg-hero3.JPG",
+          "image": "https://yassinr.is-a.dev/img/yassin-portrait.webp",
           "jobTitle": "Computer Engineering Student & AI Engineer",
           "worksFor": {
             "@type": "EducationalOrganization",
@@ -92,7 +96,7 @@
           "sameAs": [
             "https://github.com/yvs1n",
             "https://linkedin.com/in/yassinr",
-            "https://www.instagram.com/yvs1n_/"
+            "https://www.instagram.com/yassinrgb_/"
           ],
           "knowsAbout": [
             "Computer Engineering",
@@ -109,12 +113,12 @@
     }
     </script>
 
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css?v=2.2">
-    <!-- Font for heavy impact -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="./img/bg-hero.webp" fetchpriority="high">
+    <link rel="stylesheet" href="style.css?v=3.0">
+    <!-- Font for heavy impact -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
         rel="stylesheet">
 </head>
@@ -183,7 +187,7 @@
             <section class="hero panel" id="home">
                 <!-- Using original hero background with technical overlay -->
                 <div class="hero-bg-container">
-                    <img src="./img/bg-hero3.JPG" class="hero-bg-img" alt="Background">
+                    <img src="./img/bg-hero.webp" class="hero-bg-img" alt="" width="2560" height="1440" fetchpriority="high" decoding="async">
                     <div class="hero-overlay"></div>
                 </div>
 
@@ -207,7 +211,7 @@
 
                 <!-- Right Sidebar Socials (Hero) -->
                 <div class="hero-socials social-sidebar" id="hero-social-sidebar">
-                    <a href="https://github.com/yvs1n" target="_blank" class="social-link" aria-label="GitHub">
+                    <a href="https://github.com/yvs1n" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-github">
@@ -216,7 +220,7 @@
                             <path d="M9 18c-4.51 2-5-2-7-2" />
                         </svg>
                     </a>
-                    <a href="https://linkedin.com/in/yassinr" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/yassinr" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-linkedin">
@@ -225,7 +229,7 @@
                             <circle cx="4" cy="4" r="2" />
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/yvs1n_/" target="_blank" class="social-link"
+                    <a href="https://www.instagram.com/yassinrgb_/" target="_blank" rel="noopener" class="social-link"
                         aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -235,14 +239,14 @@
                             <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                         </svg>
                     </a>
-                    <div class="social-link contact-trigger" aria-label="Email">
+                    <button type="button" class="social-link contact-trigger" aria-label="Email me">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-mail">
                             <rect width="20" height="16" x="2" y="4" rx="2" />
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                         </svg>
-                    </div>
+                    </button>
                 </div>
 
                 <div class="scroll-indicator" id="scroll-down-btn">
@@ -284,6 +288,10 @@
                                 <span>&#x2192;</span></a>
                         </div>
                         <div class="about-stats" id="sidebar-stats">
+                            <figure class="about-portrait">
+                                <img src="./img/yassin-portrait.webp" alt="Portrait of Yassin Mohamed Ragab"
+                                    width="800" height="1000" loading="lazy" decoding="async">
+                            </figure>
                             <div class="system-console">
                                 <div class="console-header">
                                     <span class="console-dot red"></span>
@@ -422,9 +430,9 @@
                             <div class="desc-col">
                                 <p>Built a solid international freelance client base on Fiverr generating $150+ revenue
                                     across custom Google Chrome themes, visual assets, and media projects. Founder of
-                                    <a href="https://ssfim.pages.dev/" target="_blank" class="highlight-link">SSFIM</a>,
-                                    <a href="https://fundfair.pages.dev/" target="_blank" class="highlight-link">FundFair</a>,
-                                    and <a href="https://tranz.pages.dev/" target="_blank" class="highlight-link">TranZ</a>.
+                                    <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="highlight-link">SSFIM</a>,
+                                    <a href="https://fundfair.pages.dev/" target="_blank" rel="noopener" class="highlight-link">FundFair</a>,
+                                    and <a href="https://tranz.pages.dev/" target="_blank" rel="noopener" class="highlight-link">TranZ</a>.
                                     Presented SSFIM directly to Ranju Anand, Senior VP of Education at GEMS Education.</p>
                             </div>
                         </div>
@@ -441,14 +449,14 @@
 
                     <div class="projects-list">
                         <!-- Project 01: Elementa -->
-                        <div class="project-row fade-up" data-cursor-img="./img/elementa.jpg">
-                            <a href="https://elementaa.vercel.app/" target="_blank" class="project-link-overlay"></a>
+                        <div class="project-row fade-up" data-cursor-img="./img/elementa.webp">
+                            <a href="https://elementaa.vercel.app/" target="_blank" rel="noopener" class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>Elementa</h3>
                                 <p>Full-stack educational platform with progress tracking & video walkthroughs</p>
                             </div>
                             <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/elementa" target="_blank" class="github-subtle-link"
+                                <a href="https://github.com/yvs1n/elementa" target="_blank" rel="noopener" class="github-subtle-link"
                                     aria-label="View Source Code">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -463,15 +471,15 @@
                         </div>
 
                         <!-- Project 02: British Curriculum Hub (BC101) -->
-                        <div class="project-row fade-up" data-cursor-img="./img/british-council.jpg"
+                        <div class="project-row fade-up" data-cursor-img="./img/british-council.webp"
                             style="animation-delay: 0.1s;">
-                            <a href="https://bc101.pages.dev/" target="_blank" class="project-link-overlay"></a>
+                            <a href="https://bc101.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>British Curriculum 101</h3>
                                 <p>Interactive resource hub featuring an integrated page summarizer</p>
                             </div>
                             <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/bc101/" target="_blank" class="github-subtle-link"
+                                <a href="https://github.com/yvs1n/bc101/" target="_blank" rel="noopener" class="github-subtle-link"
                                     aria-label="View Source Code">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -486,15 +494,15 @@
                         </div>
 
                         <!-- Project 03: TranZ (CodeX UAE) -->
-                        <div class="project-row fade-up" data-cursor-img="./img/tranz.jpg"
+                        <div class="project-row fade-up" data-cursor-img="./img/tranz.webp"
                             style="animation-delay: 0.15s;">
-                            <a href="https://tranz.pages.dev/" target="_blank" class="project-link-overlay"></a>
+                            <a href="https://tranz.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>TranZ · CodeX UAE</h3>
                                 <p>National school-level web creation competition finalist platform</p>
                             </div>
                             <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/tranz" target="_blank" class="github-subtle-link"
+                                <a href="https://github.com/yvs1n/tranz" target="_blank" rel="noopener" class="github-subtle-link"
                                     aria-label="View Source Code">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -509,9 +517,9 @@
                         </div>
 
                         <!-- Project 04: SSFIM Project -->
-                        <div class="project-row fade-up" data-cursor-img="./img/ssfim.jpg"
+                        <div class="project-row fade-up" data-cursor-img="./img/ssfim.webp"
                             style="animation-delay: 0.2s;">
-                            <a href="https://ssfim.pages.dev/" target="_blank" class="project-link-overlay"></a>
+                            <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>SSFIM Platform</h3>
                                 <p>Space settlement framework presented to GEMS Senior VP of Education</p>
@@ -522,9 +530,9 @@
                         </div>
 
                         <!-- Project 05: FundFair -->
-                        <div class="project-row fade-up" data-cursor-img="./img/fundfair.jpg"
+                        <div class="project-row fade-up" data-cursor-img="./img/fundfair.webp"
                             style="animation-delay: 0.25s;">
-                            <a href="https://fundfair.pages.dev/" target="_blank" class="project-link-overlay"></a>
+                            <a href="https://fundfair.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>FundFair</h3>
                                 <p>Interactive digital finance and community fundraising ecosystem</p>
@@ -535,16 +543,16 @@
                         </div>
 
                         <!-- Project 06: Spy Game Companion -->
-                        <div class="project-row fade-up" data-cursor-img="./img/spy-game.jpg"
+                        <div class="project-row fade-up" data-cursor-img="./img/spy-game.webp"
                             style="animation-delay: 0.3s;">
-                            <a href="https://spy-game-0pla.onrender.com/" target="_blank"
+                            <a href="https://spy-game-0pla.onrender.com/" target="_blank" rel="noopener"
                                 class="project-link-overlay"></a>
                             <div class="project-row-content">
                                 <h3>Spy Game Companion</h3>
                                 <p>Mobile app with real-time persistent session handling</p>
                             </div>
                             <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/spygame" target="_blank" class="github-subtle-link"
+                                <a href="https://github.com/yvs1n/spygame" target="_blank" rel="noopener" class="github-subtle-link"
                                     aria-label="View Source Code">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -561,31 +569,31 @@
 
                     <!-- Archival Projects Grid -->
                     <div class="archive-grid">
-                        <a href="https://wsrexpo.netlify.app" target="_blank" class="archive-item magnetic-btn">WSR @
+                        <a href="https://wsrexpo.netlify.app" target="_blank" rel="noopener" class="archive-item magnetic-btn">WSR @
                             EXPO</a>
-                        <a href="https://tranz.pages.dev" target="_blank" class="archive-item magnetic-btn">TranZ
+                        <a href="https://tranz.pages.dev" target="_blank" rel="noopener" class="archive-item magnetic-btn">TranZ
                             (CodeX)</a>
-                        <a href="https://fundfair.netlify.app" target="_blank" class="archive-item magnetic-btn">Fund
+                        <a href="https://fundfair.netlify.app" target="_blank" rel="noopener" class="archive-item magnetic-btn">Fund
                             Fair</a>
-                        <a href="https://onlinesafety.netlify.app/" target="_blank"
+                        <a href="https://onlinesafety.netlify.app/" target="_blank" rel="noopener"
                             class="archive-item magnetic-btn">Online Safety in WSR</a>
-                        <a href="https://flapbirdy.netlify.app/" target="_blank"
+                        <a href="https://flapbirdy.netlify.app/" target="_blank" rel="noopener"
                             class="archive-item magnetic-btn">Flappy Bird Web</a>
-                        <a href="https://cacluater.netlify.app" target="_blank"
+                        <a href="https://cacluater.netlify.app" target="_blank" rel="noopener"
                             class="archive-item magnetic-btn">Calculator Web App</a>
-                        <a href="https://noteus.netlify.app" target="_blank" class="archive-item magnetic-btn">Note
+                        <a href="https://noteus.netlify.app" target="_blank" rel="noopener" class="archive-item magnetic-btn">Note
                             Us</a>
-                        <a href="https://t2z.netlify.app" target="_blank" class="archive-item magnetic-btn">Text 2
+                        <a href="https://t2z.netlify.app" target="_blank" rel="noopener" class="archive-item magnetic-btn">Text 2
                             Speech</a>
-                        <a href="https://qrmake.netlify.app" target="_blank" class="archive-item magnetic-btn">QR Code
+                        <a href="https://qrmake.netlify.app" target="_blank" rel="noopener" class="archive-item magnetic-btn">QR Code
                             Maker</a>
-                        <a href="https://tranzlator.netlify.app/" target="_blank"
+                        <a href="https://tranzlator.netlify.app/" target="_blank" rel="noopener"
                             class="archive-item magnetic-btn">Language Translator</a>
-                        <a href="https://clockz.netlify.app/" target="_blank" class="archive-item magnetic-btn">Analog
+                        <a href="https://clockz.netlify.app/" target="_blank" rel="noopener" class="archive-item magnetic-btn">Analog
                             Clock Simulation</a>
-                        <a href="https://zolar.netlify.app/" target="_blank"
+                        <a href="https://zolar.netlify.app/" target="_blank" rel="noopener"
                             class="archive-item magnetic-btn">Interactive Solar System</a>
-                        <a href="https://pakman.netlify.app/" target="_blank" class="archive-item magnetic-btn">Pac-Man
+                        <a href="https://pakman.netlify.app/" target="_blank" rel="noopener" class="archive-item magnetic-btn">Pac-Man
                             Clone</a>
                     </div>
                 </div>
@@ -803,21 +811,21 @@
                     </div>
 
                     <footer class="footer" style="text-align: left; align-items: flex-start; margin-top: 2rem;">
-                        <div class="footer-signature"
+                        <div class="footer-signature" aria-hidden="true"
                             style="position: relative; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 2rem;">
-                            <h1 class="hero-title glitch-layered"
-                                style="font-size: clamp(2.5rem, 8vw, 7rem); margin-bottom: 0;">YASSIN</h1>
+                            <div class="hero-title glitch-layered"
+                                style="font-size: clamp(2.5rem, 8vw, 7rem); margin-bottom: 0;">YASSIN</div>
                             <div class="hero-spotlight-wrapper">
-                                <h1 class="hero-title text-stroke" style="font-size: clamp(2.5rem, 8vw, 7rem);">
-                                    RAGAB</h1>
-                                <h1 class="hero-title hero-glow-layer" aria-hidden="true"
-                                    style="font-size: clamp(2.5rem, 8vw, 7rem);">RAGAB</h1>
+                                <div class="hero-title text-stroke" style="font-size: clamp(2.5rem, 8vw, 7rem);">
+                                    RAGAB</div>
+                                <div class="hero-title hero-glow-layer" aria-hidden="true"
+                                    style="font-size: clamp(2.5rem, 8vw, 7rem);">RAGAB</div>
                             </div>
                         </div>
 
                         <div class="footer-action-row">
                             <div class="footer-col contact-col">
-                                <span id="open-contact-btn" class="magnetic-link">Initiate Contact ↗</span>
+                                <button type="button" id="open-contact-btn" class="magnetic-link">Initiate Contact ↗</button>
                                 <div class="contact-email">yassinragab2008@gmail.com</div>
                                 <!-- Mobile Only: Sensor Sync -->
                                 <div class="mobile-only sensor-sync">
@@ -826,12 +834,12 @@
                             </div>
                             <div class="footer-col links-col">
                                 <div class="text-links">
-                                    <a href="https://linkedin.com/in/yassinr" target="_blank"
+                                    <a href="https://linkedin.com/in/yassinr" target="_blank" rel="noopener"
                                         class="magnetic-link">LinkedIn</a>
-                                    <a href="cv.pdf" target="_blank" class="magnetic-link">Download CV</a>
+                                    <a href="cv.pdf" target="_blank" rel="noopener" class="magnetic-link">Download CV</a>
                                 </div>
                                 <div class="footer-socials">
-                                    <a href="https://github.com/yvs1n" target="_blank" class="social-link magnetic-item"
+                                    <a href="https://github.com/yvs1n" target="_blank" rel="noopener" class="social-link magnetic-item"
                                         aria-label="GitHub">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -841,7 +849,7 @@
                                             <path d="M9 18c-4.51 2-5-2-7-2" />
                                         </svg>
                                     </a>
-                                    <a href="https://www.instagram.com/yvs1n_/" target="_blank"
+                                    <a href="https://www.instagram.com/yassinrgb_/" target="_blank" rel="noopener"
                                         class="social-link magnetic-item" aria-label="Instagram">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -865,32 +873,32 @@
     <!-- Custom Cursor Elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-img-container">
-        <img class="cursor-img" src="" alt="Project Preview">
+        <img class="cursor-img" alt="" decoding="async">
     </div>
 
     <!-- Contact Form Modal -->
-    <div id="contact-modal" class="modal-overlay">
+    <div id="contact-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Terminal / Contact</h3>
-                <span class="close-modal">&times;</span>
+                <h3 id="contact-title">Terminal / Contact</h3>
+                <button type="button" class="close-modal" aria-label="Close">&times;</button>
             </div>
             <form id="contact-form" action="https://formspree.io/f/xbloobvk" method="POST">
                 <div class="input-group">
-                    <label>Name</label>
-                    <input type="text" name="name" required>
+                    <label for="cf-name">Name</label>
+                    <input type="text" id="cf-name" name="name" autocomplete="name" required>
                 </div>
                 <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" name="email" required>
+                    <label for="cf-email">Email</label>
+                    <input type="email" id="cf-email" name="email" autocomplete="email" required>
                 </div>
                 <div class="input-group">
-                    <label>Subject</label>
-                    <input type="text" name="subject" required>
+                    <label for="cf-subject">Subject</label>
+                    <input type="text" id="cf-subject" name="subject" autocomplete="off" required>
                 </div>
                 <div class="input-group">
-                    <label>Message</label>
-                    <textarea name="message" rows="4" required></textarea>
+                    <label for="cf-message">Message</label>
+                    <textarea id="cf-message" name="message" rows="4" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn magnetic-btn">Send Transmission <span>&#x2192;</span></button>
             </form>
@@ -898,24 +906,24 @@
     </div>
 
     <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js" defer></script>
 
     <!-- Success Notification Modal -->
-    <div id="success-modal" class="modal-overlay" style="z-index: 10001;">
+    <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Message sent" style="z-index: 10001;">
         <div class="modal-content success-content" style="max-width: 400px; text-align: center; padding: 3rem 2rem;">
             <div class="success-icon" style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">✓</div>
             <h2 style="margin-bottom: 1rem; letter-spacing: 2px;">TRANSMISSION RECEIVED</h2>
-            <p style="color: #999; margin-bottom: 2rem; font-family: 'Space Mono', monospace; font-size: 0.9rem;">Your
+            <p style="color: #999; margin-bottom: 2rem; font-family: ui-monospace, monospace; font-size: 0.9rem;">Your
                 message has been decrypted and successfully rerouted to our servers.</p>
             <button id="close-success-btn" class="magnetic-btn" style="width: 100%;">RETURN TO SITE</button>
         </div>
     </div>
 
-    <script src="script.js?v=2.0"></script>
+    <script src="script.js?v=3.0" defer></script>
 </body>
 
 </html>

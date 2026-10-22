@@ -17,10 +17,14 @@
     // Pad counter to always be 3 digits
     function pad(n) { return String(Math.floor(n)).padStart(3, '0'); }
 
-    // Smoothly animate counter toward target
-    function tick() {
+    // Smoothly animate counter toward target. Time-based, so a slow device
+    // takes the same ~1.3s as a fast one instead of crawling frame by frame.
+    let lastTime = performance.now();
+    function tick(now) {
+        const dt = Math.min((now || performance.now()) - lastTime, 250);
+        lastTime = now || performance.now();
         if (current < target) {
-            current = Math.min(current + 1.2, target);
+            current = Math.min(current + dt * 0.075, target);
             counterEl.textContent = pad(current);
             barEl.style.width     = current + '%';
 
@@ -55,23 +59,31 @@
         }
     }
 
-    // Track real load progress via resource timing when possible
+    // Finish once the page and scripts are ready. Images keep loading in the
+    // background, so a slow connection no longer holds the loader on screen.
     function updateProgress() {
-        if (document.readyState === 'complete') {
+        if (document.readyState !== 'loading') {
             target = 100;
         } else {
-            // Simulate progress toward 90 while loading; jump to 100 on load
             target = Math.min(target + (Math.random() * 8 + 3), 90);
             setTimeout(updateProgress, 180);
         }
     }
 
-    // Start immediately
     updateProgress();
     rafId = requestAnimationFrame(tick);
+    document.addEventListener('DOMContentLoaded', () => { target = 100; });
+})();
 
-    // Guarantee full completion on window load
-    window.addEventListener('load', () => { target = 100; });
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Fade the hero photo in once it has arrived
+(function () {
+    const heroImg = document.querySelector('.hero-bg-img');
+    if (!heroImg) return;
+    const show = () => heroImg.classList.add('is-loaded');
+    if (heroImg.complete && heroImg.naturalWidth) show();
+    else heroImg.addEventListener('load', show, { once: true });
 })();
 // ════════════════════════════════════════════════════════════════
 
@@ -88,7 +100,7 @@ camera.position.z = isMobile ? 120 : 200; // Zoom in more on mobile (120 vs 200)
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 
 // ── Particle Setup ──────────────────────────────────────────────
 const PARTICLE_COUNT = 180;
@@ -151,7 +163,17 @@ const neuronLineMat = new THREE.LineBasicMaterial({
     transparent: true,
     opacity: 0.22
 });
-const neuronLineGeo = new THREE.BufferGeometry();
+// Line buffers are allocated once and reused every frame (no per-frame garbage).
+const MAX_SEG_FLOATS = PARTICLE_COUNT * PARTICLE_COUNT * 3;
+function makeLineGeo() {
+    const geo  = new THREE.BufferGeometry();
+    const attr = new THREE.BufferAttribute(new Float32Array(MAX_SEG_FLOATS), 3);
+    attr.setUsage(THREE.DynamicDrawUsage);
+    geo.setAttribute('position', attr);
+    geo.setDrawRange(0, 0);
+    return geo;
+}
+const neuronLineGeo = makeLineGeo();
 const neuronLines   = new THREE.LineSegments(neuronLineGeo, neuronLineMat);
 scene.add(neuronLines);
 
@@ -161,14 +183,14 @@ const dendriteLineMat = new THREE.LineBasicMaterial({
     transparent: true,
     opacity: 0.09
 });
-const dendriteLineGeo = new THREE.BufferGeometry();
+const dendriteLineGeo = makeLineGeo();
 const dendriteLines   = new THREE.LineSegments(dendriteLineGeo, dendriteLineMat);
 scene.add(dendriteLines);
 
 // ── Input (mouse + gyro) ────────────────────────────────────────
 let mouseX = 0, mouseY = 0;
-const windowHalfX = window.innerWidth / 2;
-const windowHalfY = window.innerHeight / 2;
+let windowHalfX = window.innerWidth / 2;
+let windowHalfY = window.innerHeight / 2;
 let gyroEnabled = false;
 
 function gyroHandler(e) {
@@ -217,14 +239,32 @@ document.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('resize', () => {
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    if (prefersReducedMotion) renderFrame();
 });
 
 // ── Animation Loop ──────────────────────────────────────────────
+const NEURON_RANGE_SQ   = NEURON_RANGE * NEURON_RANGE;
+const DENDRITE_RANGE_SQ = DENDRITE_RANGE * DENDRITE_RANGE;
+const neuronBuf   = neuronLineGeo.attributes.position;
+const dendriteBuf = dendriteLineGeo.attributes.position;
+
+function pushSeg(arr, n, pos, i, j) {
+    arr[n]     = pos[i*3]; arr[n + 1] = pos[i*3+1]; arr[n + 2] = pos[i*3+2];
+    arr[n + 3] = pos[j*3]; arr[n + 4] = pos[j*3+1]; arr[n + 5] = pos[j*3+2];
+    return n + 6;
+}
+
 function animateMesh() {
     requestAnimationFrame(animateMesh);
+    renderFrame(true);
+}
+
+function renderFrame(move) {
 
     // Gentle drift rotation
     pointCloud.rotation.y += 0.0005;
@@ -257,64 +297,54 @@ function animateMesh() {
 
     // Move particles
     const pos = pointCloud.geometry.attributes.position.array;
-    const neuronSegs   = [];
-    const dendriteSegs = [];
+    const nArr = neuronBuf.array;
+    const dArr = dendriteBuf.array;
+    let nLen = 0, dLen = 0;
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-        pos[i*3]   += velocities[i].x;
-        pos[i*3+1] += velocities[i].y;
-        pos[i*3+2] += velocities[i].z;
+        if (move) {
+            pos[i*3]   += velocities[i].x;
+            pos[i*3+1] += velocities[i].y;
+            pos[i*3+2] += velocities[i].z;
 
-        if (Math.abs(pos[i*3])   > 350) velocities[i].x *= -1;
-        if (Math.abs(pos[i*3+1]) > 350) velocities[i].y *= -1;
-        if (Math.abs(pos[i*3+2]) > 250) velocities[i].z *= -1;
+            if (Math.abs(pos[i*3])   > 350) velocities[i].x *= -1;
+            if (Math.abs(pos[i*3+1]) > 350) velocities[i].y *= -1;
+            if (Math.abs(pos[i*3+2]) > 250) velocities[i].z *= -1;
+        }
+    }
 
-        // Build connections - only from neurons outward
+    // Build connections - only from neurons outward
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
         if (types[i] !== 'neuron') continue;
 
         for (let j = i + 1; j < PARTICLE_COUNT; j++) {
-            const dx   = pos[i*3]   - pos[j*3];
-            const dy   = pos[i*3+1] - pos[j*3+1];
-            const dz   = pos[i*3+2] - pos[j*3+2];
-            const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            const dx = pos[i*3]   - pos[j*3];
+            const dy = pos[i*3+1] - pos[j*3+1];
+            const dz = pos[i*3+2] - pos[j*3+2];
+            const distSq = dx*dx + dy*dy + dz*dz;
 
-            if (types[j] === 'neuron' && dist < NEURON_RANGE) {
-                // Neuron ↔ Neuron: bright axon connection
-                neuronSegs.push(
-                    pos[i*3], pos[i*3+1], pos[i*3+2],
-                    pos[j*3], pos[j*3+1], pos[j*3+2]
-                );
-            } else if (types[j] === 'satellite' && dist < DENDRITE_RANGE) {
-                // Neuron → Satellite: faint dendrite
-                dendriteSegs.push(
-                    pos[i*3], pos[i*3+1], pos[i*3+2],
-                    pos[j*3], pos[j*3+1], pos[j*3+2]
-                );
+            if (types[j] === 'neuron') {
+                if (distSq < NEURON_RANGE_SQ) nLen = pushSeg(nArr, nLen, pos, i, j);   // bright axon
+            } else if (distSq < DENDRITE_RANGE_SQ) {
+                dLen = pushSeg(dArr, dLen, pos, i, j);                                  // faint dendrite
             }
         }
     }
 
     pointCloud.geometry.attributes.position.needsUpdate = true;
-    neuronLines.geometry.setAttribute('position',   new THREE.Float32BufferAttribute(neuronSegs, 3));
-    dendriteLines.geometry.setAttribute('position', new THREE.Float32BufferAttribute(dendriteSegs, 3));
+    neuronBuf.needsUpdate = true;
+    dendriteBuf.needsUpdate = true;
+    neuronLineGeo.setDrawRange(0, nLen / 3);
+    dendriteLineGeo.setDrawRange(0, dLen / 3);
 
     renderer.render(scene, camera);
 }
-animateMesh();
+
+if (prefersReducedMotion) renderFrame(false); // one still frame, no drift
+else animateMesh();
 
 // --- 2. Interface Interactions ---
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize Lucide Icons with safety delay to ensure CDN script is fully ready
-    function initIcons() {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        } else {
-            // Retry if library not ready yet
-            setTimeout(initIcons, 100);
-        }
-    }
-    initIcons();
-
     // RAGAB Spotlight Glow — tracks mouse inside the wrapper
     const spotlightWrapper = document.querySelector('.hero-spotlight-wrapper');
     const glowLayer = document.querySelector('.hero-glow-layer');
@@ -339,24 +369,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById('open-contact-btn');
     const modal = document.getElementById('contact-modal');
     const closeBtn = document.querySelector('.close-modal');
+    let lastFocused = null;
 
-    if(openBtn && modal) {
-        openBtn.addEventListener('click', () => modal.classList.add('active'));
+    function openModal() {
+        if (!modal) return;
+        lastFocused = document.activeElement;
+        modal.classList.add('active');
+        const first = modal.querySelector('input');
+        if (first) setTimeout(() => first.focus({ preventScroll: true }), 50);
     }
 
-    // New: Contact Trigger (for email icons in sidebar/footer)
-    const contactTriggers = document.querySelectorAll('.contact-trigger');
-    contactTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            if (modal) modal.classList.add('active');
-        });
+    function closeModal() {
+        if (!modal || !modal.classList.contains('active')) return;
+        modal.classList.remove('active');
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus({ preventScroll: true });
+    }
+    window.closeContactModal = closeModal;
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+
+    // Email icons in the sidebar/footer open the same form
+    document.querySelectorAll('.contact-trigger').forEach(trigger => {
+        trigger.addEventListener('click', openModal);
     });
 
-    if(closeBtn && modal) {
-        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-}
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => {
-        if(e.target === modal) modal.classList.remove('active');
+        if (e.target === modal) closeModal();
+    });
+
+    // Escape closes whichever popup is open
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        const success = document.getElementById('success-modal');
+        if (success && success.classList.contains('active')) {
+            success.classList.remove('active');
+        }
+        closeModal();
     });
 
     // Custom Cursor Logic
@@ -373,6 +422,14 @@ document.addEventListener('DOMContentLoaded', function () {
         let posDot = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         let posImg = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         let hasMoved = false;
+        let cursorRunning = false;
+
+        // The cursor loop only runs while something is still moving
+        function startCursor() {
+            if (cursorRunning) return;
+            cursorRunning = true;
+            requestAnimationFrame(renderCursor);
+        }
 
         window.addEventListener('mousemove', (e) => {
             if (!hasMoved) {
@@ -381,7 +438,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             mouse.x = e.clientX;
             mouse.y = e.clientY;
+            startCursor();
         });
+
+        // If a preview image is missing, hide the preview instead of showing a broken image
+        cursorImg.addEventListener('error', () => {
+            gsap.to(cursorImgContainer, { opacity: 0, duration: 0.2, overwrite: true });
+        });
+
+        // Warm the cache so previews appear instantly on first hover
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.project-row[data-cursor-img]').forEach(row => {
+                const img = new Image();
+                img.decoding = 'async';
+                img.src = row.getAttribute('data-cursor-img');
+            });
+        }, { once: true });
 
         // Hide cursor if it leaves the window
         document.addEventListener('mouseleave', () => {
@@ -397,6 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let activeProjectSrc = null;
 
         const setProjectPreview = (newSrc) => {
+            startCursor();
             if (!newSrc) {
                 activeProjectSrc = null;
                 gsap.to(cursorImgContainer, { opacity: 0, scale: 0.3, duration: 0.4, ease: "power2.in", overwrite: true });
@@ -513,9 +586,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (cursorImgContainer) {
                 cursorImgContainer.style.transform = `translate3d(${posImg.x}px, ${posImg.y}px, 0) translate3d(-50%, -50%, 0)`;
             }
+
+            const settled = Math.abs(mouse.x - posDot.x) < 0.1 && Math.abs(mouse.y - posDot.y) < 0.1 &&
+                            Math.abs(targetX - posImg.x) < 0.1 && Math.abs(targetY - posImg.y) < 0.1;
+            if (settled) {
+                cursorRunning = false;
+                return;
+            }
             requestAnimationFrame(renderCursor);
         }
-        renderCursor();
+        startCursor();
     } else {
         // Explicitly hide cursor elements on touch devices
         if (cursorDot) cursorDot.style.display = 'none';
@@ -627,7 +707,7 @@ gsap.from(".timeline-row, .fade-up", {
 });
 
 // Magnetic Buttons/Skills Hover Effect
-const magnetics = document.querySelectorAll('.magnetic-skill, .magnetic-btn, .social-link');
+const magnetics = prefersReducedMotion ? [] : document.querySelectorAll('.magnetic-skill, .magnetic-btn, .social-link');
 magnetics.forEach(btn => {
     btn.addEventListener('mousemove', function(e) {
         const rect = btn.getBoundingClientRect();
@@ -655,7 +735,7 @@ magnetics.forEach(btn => {
 });
 
 // Hero Parallax Scrubbing
-gsap.to(".hero-bg-img", {
+if (!prefersReducedMotion) gsap.to(".hero-bg-img", {
     scrollTrigger: {
         trigger: ".hero",
         start: "top top",
@@ -927,9 +1007,9 @@ const contactForm = document.getElementById('contact-form');
 const successModal = document.getElementById('success-modal');
 const closeSuccessBtn = document.getElementById('close-success-btn');
 const contactModal = document.getElementById('contact-modal');
-const submitBtn = contactForm.querySelector('button[type="submit"]');
 
 if (contactForm) {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -971,6 +1051,7 @@ if (contactForm) {
 if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener('click', () => {
         successModal.classList.remove('active');
-        if (contactModal) contactModal.classList.remove('active');
+        if (typeof window.closeContactModal === 'function') window.closeContactModal();
+        else if (contactModal) contactModal.classList.remove('active');
     });
 }
