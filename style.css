@@ -1709,6 +1709,7 @@ body.is-transitioning {
         position: relative;
         top: auto;
         left: auto;
+        right: auto;
         margin-top: 2rem;
         gap: 1.5rem;
         z-index: 100;
@@ -1827,5 +1828,74 @@ textarea:focus-visible {
 @media (max-width: 900px) {
     .hero-content .hero-title {
         font-size: clamp(3.2rem, min(15vw, 16vh), 6rem);
+    }
+}
+
+
+/* ═══ Stats & Portrait Responsive Layout ═════════════════════════ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.stats-grid .stat-box {
+    margin-top: 0 !important;
+}
+
+/* Tablet & Wide Foldable Screens (Surface Duo, iPads: 601px - 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    .about-stats {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr) 1.25fr;
+        gap: 2.5rem;
+        align-items: start;
+        margin-top: 3rem;
+    }
+
+    .about-portrait {
+        width: 100%;
+        max-width: 300px;
+        margin: 0;
+    }
+
+    .about-stats-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .system-console {
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile Screens (<= 600px) */
+@media (max-width: 600px) {
+    .about-portrait {
+        width: 75%;
+        max-width: 250px;
+        aspect-ratio: 4 / 5;
+        margin: 0 auto 2rem auto;
+    }
+
+    .about-stats-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .system-console {
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
     }
 }
