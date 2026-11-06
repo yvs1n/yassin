@@ -121,7 +121,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preload" as="image" href="./img/bg-hero.webp" fetchpriority="high">
-    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="style.css?v=3.7">
     <!-- Font for heavy impact -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
         rel="stylesheet">
@@ -460,15 +460,18 @@
                     <div class="flagship-grid">
                         <!-- Flagship 01: NaviCampus -->
                         <article class="flagship-card" data-cursor-img="./img/navicampus.webp">
-                            <div class="flagship-media-wrapper">
+                            <!-- Mobile-only media preview banner -->
+                            <div class="flagship-media-wrapper flagship-mobile-media">
                                 <img src="./img/navicampus.webp" alt="NaviCampus Platform Interface" class="flagship-img" width="1200" height="630" loading="lazy" decoding="async">
-                                <div class="flagship-status-badge">
-                                    <span class="status-dot"></span>
-                                    <span>Production System</span>
-                                </div>
                             </div>
                             <div class="flagship-body">
-                                <span class="flagship-eyebrow">Enterprise Campus Navigation · 2026</span>
+                                <div class="flagship-header-row">
+                                    <span class="flagship-eyebrow">Enterprise Campus Navigation · 2026</span>
+                                    <div class="flagship-status-badge">
+                                        <span class="status-dot"></span>
+                                        <span>Production System</span>
+                                    </div>
+                                </div>
                                 <h3 class="flagship-title">NaviCampus</h3>
                                 <p class="flagship-tagline">Climate-Aware & Accessible Campus Navigation Engine</p>
                                 <p class="flagship-desc">
@@ -515,15 +518,18 @@
 
                         <!-- Flagship 02: Blackboarder -->
                         <article class="flagship-card" data-cursor-img="./img/blackboarder.webp">
-                            <div class="flagship-media-wrapper">
+                            <!-- Mobile-only media preview banner -->
+                            <div class="flagship-media-wrapper flagship-mobile-media">
                                 <img src="./img/blackboarder.webp" alt="Blackboarder Academic Sidekick Preview" class="flagship-img" width="1200" height="675" loading="lazy" decoding="async">
-                                <div class="flagship-status-badge">
-                                    <span class="status-dot"></span>
-                                    <span>Active Release</span>
-                                </div>
                             </div>
                             <div class="flagship-body">
-                                <span class="flagship-eyebrow">Intelligent LMS Sidekick · 2026</span>
+                                <div class="flagship-header-row">
+                                    <span class="flagship-eyebrow">Intelligent LMS Sidekick · 2026</span>
+                                    <div class="flagship-status-badge">
+                                        <span class="status-dot"></span>
+                                        <span>Active Release</span>
+                                    </div>
+                                </div>
                                 <h3 class="flagship-title">Blackboarder</h3>
                                 <p class="flagship-tagline">Bilingual LMS Extension & Academic Deadline Companion</p>
                                 <p class="flagship-desc">

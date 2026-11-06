@@ -544,12 +544,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.setProjectPreview = setProjectPreview;
 
-        const projectRows = document.querySelectorAll('.project-row');
-        projectRows.forEach(row => {
-            row.addEventListener('mouseenter', () => {
-                setProjectPreview(row.getAttribute('data-cursor-img'));
+        const previewTargets = document.querySelectorAll('.project-row, .flagship-card');
+        previewTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                const src = target.getAttribute('data-cursor-img');
+                if (src) setProjectPreview(src);
             });
-            row.addEventListener('mouseleave', () => {
+            target.addEventListener('mouseleave', (e) => {
+                if (e.relatedTarget && e.relatedTarget.closest && (e.relatedTarget.closest('.project-row') || e.relatedTarget.closest('.flagship-card'))) {
+                    return;
+                }
                 setProjectPreview(null);
             });
         });
@@ -557,8 +561,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Interactive Hover States (Coordinated)
         const interactiveElements = document.querySelectorAll('a, button, .magnetic-btn, .magnetic-skill, .magnetic-link, .nav-link, .close-modal, .scroll-indicator, .social-link');
         interactiveElements.forEach(el => {
-            // Skip if it's a project row OR inside a project row to avoid flickering
-            if (el.classList.contains('project-row') || el.closest('.project-row')) return;
+            // Skip if it's inside a preview item to avoid cursor state flickering
+            if (el.classList.contains('project-row') || el.closest('.project-row') || el.classList.contains('flagship-card') || el.closest('.flagship-card')) return;
 
             el.addEventListener('mouseenter', () => {
                 if (cursorDot) cursorDot.classList.add('active');
