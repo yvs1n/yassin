@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Warm the cache so previews appear instantly on first hover
         window.addEventListener('load', () => {
-            document.querySelectorAll('.project-row[data-cursor-img]').forEach(row => {
+            document.querySelectorAll('[data-cursor-img]').forEach(row => {
                 const img = new Image();
                 img.decoding = 'async';
                 img.src = row.getAttribute('data-cursor-img');
