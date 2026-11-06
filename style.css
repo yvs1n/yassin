@@ -1,6 +1,6 @@
 :root {
     --bg: #050505; /* Deep, absolute tech black */
-    --surface: #111111;
+    --surface: #0d0d10;
     --primary: #ffffff;
     --secondary: #888888;
     --accent: #ff4500;
@@ -482,7 +482,7 @@ body.classic-scroll .transition-curtain {
 
 /* System Console */
 .system-console {
-    background: rgba(10, 10, 10, 0.7);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
@@ -1072,7 +1072,7 @@ body.classic-scroll .transition-curtain {
 
 .cert-card {
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.015);
+    background: var(--surface);
     padding: 1.5rem;
     border-radius: 4px;
     display: flex;
@@ -1188,13 +1188,18 @@ body.classic-scroll .transition-curtain {
 }
 
 .honor-item {
-    border-left: 2px solid var(--border);
-    padding: 0.5rem 0 0.5rem 1.5rem;
-    transition: border-color 0.3s ease;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 .honor-item:hover {
+    border-color: var(--secondary);
     border-left-color: var(--primary);
+    transform: translateY(-2px);
 }
 
 .honor-item h4 {
@@ -1397,13 +1402,16 @@ body.classic-scroll .transition-curtain {
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 200px;
+    width: 360px;
+    height: 225px;
     pointer-events: none;
     z-index: 9998;
     overflow: hidden;
     opacity: 0;
-    border-radius: 8px; /* position and scale are set by GSAP in script.js */
+    border-radius: 8px;
+    background: #0a0b0e;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .cursor-img-container img {

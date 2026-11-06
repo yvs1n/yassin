@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         cursorImg.src = newSrc;
                         activeProjectSrc = newSrc;
                         gsap.to(cursorImgContainer, { 
-                            opacity: 0.9, 
+                            opacity: 1, 
                             scale: 1, 
                             duration: 0.3, 
                             ease: "power2.out"
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (cursorDot) cursorDot.classList.add('img-active');
                 snapPreviewToCursor();
                 gsap.fromTo(cursorImgContainer, { opacity: 0, scale: 0.3 }, {
-                    opacity: 0.9, 
+                    opacity: 1, 
                     scale: 1, 
                     duration: 0.45, 
                     ease: "power2.out",
