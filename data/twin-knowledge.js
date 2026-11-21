@@ -61,7 +61,7 @@ export const KNOWLEDGE_BASE = [
       "Blackboarder is my bilingual academic sidekick extension for Blackboard Learn Ultra.",
       "It features a custom local NLP parser that extracts buried exam deadlines and room changes from unstructured announcements in both Arabic (like 'الأحد بعد القادم') and English.",
       "It also computes weighted cumulative GPA projections on the UOS 4.0 scale and syncs across devices via private 10-character cryptographic keys.",
-      "The codebase has over 528 Vitest tests. Check out the <a href='https://blackboarder.pages.dev/' target='_blank' rel='noopener' class='tw-link'>official site</a> or view the repo on <a href='https://github.com/yvs1n/blackboarder-extension' target='_blank' rel='noopener' class='tw-link'>GitHub</a>."
+      "The codebase has over 528 Vitest tests. Install it from the <a href='https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb' target='_blank' rel='noopener' class='tw-link'>Chrome Web Store</a>, check out the <a href='https://blackboarder.pages.dev/' target='_blank' rel='noopener' class='tw-link'>official site</a>, or view the repo on <a href='https://github.com/yvs1n/blackboarder-extension' target='_blank' rel='noopener' class='tw-link'>GitHub</a>."
     ],
     followups: ["Tell me about NaviCampus", "What is your tech stack?", "How do I reach you?"]
   },
