@@ -1,4 +1,24 @@
 User-agent: *
 Allow: /
+Disallow: /old/
 
-Sitemap: https://yassinr.is-a.dev/sitemap.xml
+# AI Search & Generative Engine Crawlers (GEO)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://yassinr.me/sitemap.xml

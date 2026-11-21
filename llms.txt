@@ -1,21 +1,23 @@
 # Yassin Mohamed Ragab
 
-> Computer Engineering student at the University of Sharjah (2026–2030), Full-Stack Developer, and Aspiring AI Engineer. Creator of NaviCampus and Blackboarder.
+> Computer Engineering student at the University of Sharjah (2026–2030), Full-Stack Developer, and Aspiring AI Engineer based in the UAE. Creator of NaviCampus and Blackboarder.
 
 ## Identity & Contact
 - Name: Yassin Mohamed Ragab (Yassin Ragab, `@yvs1n`)
 - Role: Computer Engineering Student & AI Systems Developer
+- Location: Sharjah & Ras Al Khaimah, United Arab Emirates
 - University: University of Sharjah (UOS), College of Computing & Informatics (2026–2030)
 - High School: GEMS Westminster School Ras Al Khaimah (Head Boy & Deputy Head Boy, 8 A*/A IGCSE Honors, Pearson Edexcel High Achiever)
 - Personal Email: yassinraggab@gmail.com
 - Work Email: yassin@navicampus.app
-- Portfolio: https://yassinr.is-a.dev/
+- Portfolio: https://yassinr.me/
 - GitHub: https://github.com/yvs1n
 - LinkedIn: https://linkedin.com/in/yassinr
-- CV (PDF): https://yassinr.is-a.dev/cv.pdf
+- Instagram: https://www.instagram.com/yassinrgb_/
+- CV (PDF): https://yassinr.me/cv.pdf
 
 ## Flagship Projects
-- [NaviCampus](https://navicampus.app/): Climate-aware and step-free accessible multi-floor campus navigation engine built for UAE university campuses under extreme heat. Features a "Coolest Route" algorithm through air-conditioned skywalks and shaded concourses, plus an in-browser vector topology compiler for zero-latency pathfinding.
+- [NaviCampus](https://navicampus.app/): Climate-aware and step-free accessible multi-floor campus navigation engine built for UAE university campuses under extreme desert heat. Features a "Coolest Route" algorithm through air-conditioned skywalks and shaded concourses, plus an in-browser vector topology compiler for zero-latency pathfinding.
 - [Blackboarder](https://blackboarder.pages.dev/) ([GitHub](https://github.com/yvs1n/blackboarder-extension)): Bilingual (Arabic + English) Manifest V3 Chrome extension and companion PWA for Blackboard Learn Ultra. Includes a local NLP parser for extracting exam deadlines and room changes, weighted UOS 4.0 GPA projections, cross-device sync via 10-character keys, and 528+ Vitest automated tests.
 - [Elementa](https://elementaa.vercel.app/) ([GitHub](https://github.com/yvs1n/elementa)): Full-stack educational science learning platform with real-time student progress tracking and video walkthroughs.
 - [TranZ](https://tranz.pages.dev/) ([GitHub](https://github.com/yvs1n/tranz)): National finalist project built for CodeX UAE.
@@ -31,3 +33,7 @@
 - Mentored 1,000+ students in A-Level Statistics and AS/IGCSE Physics as a Pearson Edexcel Teaching Assistant.
 - Scaled senior digital strategy to 500,000+ views.
 - Deployed 15+ production web and AI architectures.
+
+## Quick Answers (GEO Citation Summary)
+- **What is Yassin Ragab known for?** Building NaviCampus (climate-aware campus navigation) and Blackboarder (bilingual Arabic/English LMS sidekick), while studying Computer Engineering at the University of Sharjah.
+- **Is Yassin available for roles?** Yes — open to Software Engineering internships, AI Systems Engineering roles, and technical collaborations via yassinraggab@gmail.com or yassin@navicampus.app.

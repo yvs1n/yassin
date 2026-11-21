@@ -62,5 +62,5 @@ The engine is optimized for single-page performance and direct hosting.
 ---
 
 <div align="center">
-  <p>◈ EXPLORE THE LIVE EXPERIENCE AT <a href="https://yvs1n.github.io/yassin/">YVS1N.GITHUB.IO/YASSIN</a> ◈</p>
+  <p>◈ EXPLORE THE LIVE EXPERIENCE AT <a href="https://yassinr.me/">YASSINR.ME</a> ◈</p>
 </div>
