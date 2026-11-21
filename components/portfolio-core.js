@@ -24,7 +24,7 @@
         const dt = Math.min((now || performance.now()) - lastTime, 250);
         lastTime = now || performance.now();
         if (current < target) {
-            current = Math.min(current + dt * 0.075, target);
+            current = Math.min(current + dt * 0.14, target);
             counterEl.textContent = pad(current);
             barEl.style.width     = current + '%';
 
@@ -38,8 +38,8 @@
         if (current < 100) {
             rafId = requestAnimationFrame(tick);
         } else {
-            // Small pause so user can see "100", then exit
-            setTimeout(dismissPreloader, 400);
+            // Brief pause at 100 so interactive UI unlocks quickly
+            setTimeout(dismissPreloader, 180);
         }
     }
 
@@ -97,14 +97,20 @@ scene.fog = new THREE.FogExp2(0x050505, 0.0015);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
 const isMobile = window.innerWidth <= 900;
+const isLowPowerDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
 camera.position.z = isMobile ? 120 : 200; // Zoom in more on mobile (120 vs 200)
 
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: false,
+    alpha: true,
+    powerPreference: 'low-power'
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+renderer.setPixelRatio(isLowPowerDevice ? 1 : Math.min(window.devicePixelRatio || 1, 1.25));
 
-// ── Particle Setup ──────────────────────────────────────────────
-const PARTICLE_COUNT = 180;
+// ── Particle Setup (adaptive count for minimal CPU/GPU load) ────
+const PARTICLE_COUNT = isLowPowerDevice ? 92 : 124;
 const NEURON_RATIO   = 0.28;  // 28% are hub neurons
 const NEURON_RANGE   = 130;   // neurons link to each other this far
 const DENDRITE_RANGE = 60;    // neurons link to satellites this far
@@ -164,8 +170,8 @@ const neuronLineMat = new THREE.LineBasicMaterial({
     transparent: true,
     opacity: 0.22
 });
-// Line buffers are allocated once and reused every frame (no per-frame garbage).
-const MAX_SEG_FLOATS = PARTICLE_COUNT * PARTICLE_COUNT * 3;
+// Line buffers are allocated once and reused every frame (sized cleanly for low VRAM).
+const MAX_SEG_FLOATS = PARTICLE_COUNT * 18 * 6;
 function makeLineGeo() {
     const geo  = new THREE.BufferGeometry();
     const attr = new THREE.BufferAttribute(new Float32Array(MAX_SEG_FLOATS), 3);
@@ -237,7 +243,7 @@ document.addEventListener('mousemove', (e) => {
     if (gyroEnabled) return; // don't override gyro
     mouseX = (e.clientX - windowHalfX) * 0.5;
     mouseY = (e.clientY - windowHalfY) * 0.5;
-});
+}, { passive: true });
 
 window.addEventListener('resize', () => {
     windowHalfX = window.innerWidth / 2;
@@ -245,32 +251,41 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    if (prefersReducedMotion) renderFrame();
-});
+    if (prefersReducedMotion) renderFrame(false, 1);
+}, { passive: true });
 
-// ── Animation Loop ──────────────────────────────────────────────
+// ── Animation Loop (30 FPS cap + tab visibility pause) ─────────
 const NEURON_RANGE_SQ   = NEURON_RANGE * NEURON_RANGE;
 const DENDRITE_RANGE_SQ = DENDRITE_RANGE * DENDRITE_RANGE;
 const neuronBuf   = neuronLineGeo.attributes.position;
 const dendriteBuf = dendriteLineGeo.attributes.position;
+const NEURAL_FRAME_MS = 1000 / 30;
+let lastNeuralTime = performance.now();
 
 function pushSeg(arr, n, pos, i, j) {
+    if (n + 6 > arr.length) return n;
     arr[n]     = pos[i*3]; arr[n + 1] = pos[i*3+1]; arr[n + 2] = pos[i*3+2];
     arr[n + 3] = pos[j*3]; arr[n + 4] = pos[j*3+1]; arr[n + 5] = pos[j*3+2];
     return n + 6;
 }
 
-function animateMesh() {
+function animateMesh(now) {
     requestAnimationFrame(animateMesh);
-    renderFrame(true);
+    if (document.hidden) return;
+    const elapsed = now - lastNeuralTime;
+    if (elapsed < NEURAL_FRAME_MS) return;
+    lastNeuralTime = now - (elapsed % NEURAL_FRAME_MS);
+    const timeScale = Math.min(elapsed / 16.6667, 2.5);
+    renderFrame(true, timeScale);
 }
 
-function renderFrame(move) {
+function renderFrame(move, timeScale = 1) {
 
     // Gentle drift rotation
-    pointCloud.rotation.y += 0.0005;
-    neuronLines.rotation.y  += 0.0005;
-    dendriteLines.rotation.y += 0.0005;
+    const rotStep = 0.0005 * timeScale;
+    pointCloud.rotation.y += rotStep;
+    neuronLines.rotation.y  += rotStep;
+    dendriteLines.rotation.y += rotStep;
 
     // ── Interaction Modes ─────────────────────────────────────
     if (gyroEnabled) {
@@ -286,8 +301,8 @@ function renderFrame(move) {
         camera.position.y += (0 - camera.position.y) * 0.05;
     } else {
         // DESKTOP / MOUSE: Use deep position parallax
-        camera.position.x += (mouseX - camera.position.x) * 0.015;
-        camera.position.y += (-mouseY - camera.position.y) * 0.015;
+        camera.position.x += (mouseX - camera.position.x) * 0.025;
+        camera.position.y += (-mouseY - camera.position.y) * 0.025;
         
         // Ensure scene rotation is reset for position mode
         scene.rotation.x += (0 - scene.rotation.x) * 0.05;
@@ -302,11 +317,11 @@ function renderFrame(move) {
     const dArr = dendriteBuf.array;
     let nLen = 0, dLen = 0;
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        if (move) {
-            pos[i*3]   += velocities[i].x;
-            pos[i*3+1] += velocities[i].y;
-            pos[i*3+2] += velocities[i].z;
+    if (move) {
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            pos[i*3]   += velocities[i].x * timeScale;
+            pos[i*3+1] += velocities[i].y * timeScale;
+            pos[i*3+2] += velocities[i].z * timeScale;
 
             if (Math.abs(pos[i*3])   > 350) velocities[i].x *= -1;
             if (Math.abs(pos[i*3+1]) > 350) velocities[i].y *= -1;
@@ -346,31 +361,11 @@ function renderFrame(move) {
     renderer.render(scene, camera);
 }
 
-if (prefersReducedMotion) renderFrame(false); // one still frame, no drift
-else animateMesh();
+if (prefersReducedMotion) renderFrame(false, 1); // one still frame, no drift
+else requestAnimationFrame(animateMesh);
 
 // --- 2. Interface Interactions ---
 document.addEventListener('DOMContentLoaded', function () {
-    // RAGAB Spotlight Glow — tracks mouse inside the wrapper
-    const spotlightWrapper = document.querySelector('.hero-spotlight-wrapper');
-    const glowLayer = document.querySelector('.hero-glow-layer');
-    if (spotlightWrapper && glowLayer) {
-        spotlightWrapper.addEventListener('mousemove', (e) => {
-            const rect = spotlightWrapper.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            glowLayer.style.setProperty('--spotlight-x', `${x}px`);
-            glowLayer.style.setProperty('--spotlight-y', `${y}px`);
-        });
-        // Reset when mouse leaves so glow fades cleanly
-        spotlightWrapper.addEventListener('mouseleave', () => {
-            glowLayer.style.setProperty('--spotlight-x', '-200px');
-            glowLayer.style.setProperty('--spotlight-y', '-200px');
-        });
-    }
-
-
-
     // Modal Logic
     const openBtn = document.getElementById('open-contact-btn');
     const modal = document.getElementById('contact-modal');
@@ -643,6 +638,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     const typewriterEl = document.getElementById("typewriter-text");
+    const aboutPanel = document.getElementById("about");
     if (typewriterEl) {
         let lineIdx = 0;
         let charIdx = 0;
@@ -650,6 +646,11 @@ document.addEventListener('DOMContentLoaded', function () {
         let typeSpeed = 50;
 
         function typeLine() {
+            // Skip work while tab is hidden or Profile panel is off-screen
+            if (document.hidden || (aboutPanel && !aboutPanel.classList.contains('active'))) {
+                setTimeout(typeLine, 400);
+                return;
+            }
             const currentLine = terminalLines[lineIdx];
             
             if (isDeleting) {
@@ -737,32 +738,25 @@ gsap.from(".timeline-row, .fade-up", {
     ease: "power3.out"
 });
 
-// Magnetic Buttons/Skills Hover Effect
+// Magnetic Buttons/Skills Hover Effect (cached rect avoids per-frame reflow)
 const magnetics = prefersReducedMotion ? [] : document.querySelectorAll('.magnetic-skill, .magnetic-btn, .social-link');
 magnetics.forEach(btn => {
-    btn.addEventListener('mousemove', function(e) {
-        const rect = btn.getBoundingClientRect();
-        const h = rect.width / 2;
-        const v = rect.height / 2;
-        const x = e.clientX - rect.left - h;
-        const y = e.clientY - rect.top - v;
-        
-        gsap.to(btn, {
-            x: x * 0.4,
-            y: y * 0.4,
-            duration: 0.4,
-            ease: "power2.out"
-        });
-    });
+    let cachedRect = null;
+    btn.addEventListener('mouseenter', () => {
+        cachedRect = btn.getBoundingClientRect();
+    }, { passive: true });
+
+    btn.addEventListener('mousemove', (e) => {
+        if (!cachedRect) cachedRect = btn.getBoundingClientRect();
+        const x = e.clientX - cachedRect.left - cachedRect.width * 0.5;
+        const y = e.clientY - cachedRect.top - cachedRect.height * 0.5;
+        gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.35, ease: "power2.out", overwrite: 'auto' });
+    }, { passive: true });
     
-    btn.addEventListener('mouseleave', function() {
-        gsap.to(btn, {
-            x: 0,
-            y: 0,
-            duration: 0.7,
-            ease: "elastic.out(1, 0.3)"
-        });
-    });
+    btn.addEventListener('mouseleave', () => {
+        cachedRect = null;
+        gsap.to(btn, { x: 0, y: 0, duration: 0.65, ease: "elastic.out(1, 0.3)", overwrite: 'auto' });
+    }, { passive: true });
 });
 
 // Hero Parallax Scrubbing

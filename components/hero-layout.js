@@ -33,13 +33,23 @@ export function initHeroLayout() {
     );
   }
 
-  // Scoped spotlight glow on RAGAB (zero global mousemove listeners)
+  // Scoped spotlight glow on RAGAB (rAF-throttled, zero forced reflows)
   const spotlightWrapper = document.querySelector('.hero-spotlight-wrapper');
   if (spotlightWrapper) {
-    spotlightWrapper.addEventListener('mousemove', (e) => {
-      const rect = spotlightWrapper.getBoundingClientRect();
-      spotlightWrapper.style.setProperty('--spotlight-x', `${e.clientX - rect.left}px`);
-      spotlightWrapper.style.setProperty('--spotlight-y', `${e.clientY - rect.top}px`);
+    let rafPending = false;
+    let nextX = -200;
+    let nextY = -200;
+
+    spotlightWrapper.addEventListener('pointermove', (e) => {
+      nextX = e.offsetX;
+      nextY = e.offsetY;
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        spotlightWrapper.style.setProperty('--spotlight-x', `${nextX}px`);
+        spotlightWrapper.style.setProperty('--spotlight-y', `${nextY}px`);
+      });
     }, { passive: true });
   }
 

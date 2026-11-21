@@ -18,8 +18,8 @@
     border-radius: var(--dock-radius);
     padding: var(--dock-pad) 1.25rem;
     box-shadow: 0 20px 50px rgb(0 0 0 / 0.85), 0 0 30px rgb(255 255 255 / 0.04);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;

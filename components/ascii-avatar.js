@@ -83,7 +83,7 @@ export class AsciiAvatar {
     this.fs = boxW / (this.crop.cols * this.aspect);
     const W = Math.round(this.crop.cols * this.aspect * this.fs);
     const H = Math.round(this.crop.rows * this.fs);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     this.canvas.width = Math.round(W * dpr);
     this.canvas.height = Math.round(H * dpr);
@@ -215,18 +215,29 @@ export class AsciiAvatar {
     this.raf = null;
   }
 
+  scheduleDraw() {
+    if (this.drawPending) return;
+    this.drawPending = true;
+    requestAnimationFrame(() => {
+      this.drawPending = false;
+      this.draw();
+    });
+  }
+
   initEvents() {
+    this.drawPending = false;
+
     this.canvas.addEventListener('pointermove', (e) => {
       const scaleX = this.canvas.width / this.canvas.clientWidth;
       const scaleY = this.canvas.height / this.canvas.clientHeight;
       this.pointer = { x: e.offsetX * scaleX, y: e.offsetY * scaleY };
-      this.draw();
+      this.scheduleDraw();
     }, { passive: true });
 
     const clearPointer = () => {
       if (this.pointer !== null) {
         this.pointer = null;
-        this.draw();
+        this.scheduleDraw();
       }
     };
 
