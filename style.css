@@ -1,9 +1,9 @@
 ﻿/* ==========================================================================
-   Yassin Ragab — Portfolio Beta Stylesheet Entry
+   Yassin Ragab — Portfolio Stylesheet Entry
    Loads base portfolio theme + modular hero, dock, and responsive styles.
    ========================================================================== */
 
-@import url("./styles/base.css");
-@import url("./styles/hero.css");
-@import url("./styles/twin-dock.css");
-@import url("./styles/responsive.css");
+@import url("./styles/base.css?v=26");
+@import url("./styles/hero.css?v=26");
+@import url("./styles/twin-dock.css?v=26");
+@import url("./styles/responsive.css?v=26");
