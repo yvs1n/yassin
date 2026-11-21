@@ -33,10 +33,26 @@ Fully responsive design that adapts its scrollytelling mechanics and navigation 
 
 ### [ ❖ ARCHITECTURE ]
 ```text
-├── index.html       # Structural Core & Viewport Definitions
-├── script.js        # Neural Logic & Interaction Engine
-├── style.css        # Visual Aesthetics & Typography
-└── img/             # High-Resolution Assets & Favicons
+├── index.html                   # Main Portfolio Entry (SEO & Crawler Friendly)
+├── llms.txt                     # Machine-Readable Dossier for AI Agents & LLMs
+├── style.css                    # Entry Stylesheet (imports styles/*)
+├── script.js                    # Entry ES Module (wires hero, avatar, twin dock)
+├── data/
+│   └── twin-knowledge.js        # Pure Data: Bio, Chip Pools & Digital Twin Q&A
+├── components/
+│   ├── portfolio-core.js        # Base Three.js Neural Canvas, Navigation & Modals
+│   ├── ascii-processor.js       # Pure Image-to-ASCII & 2.5D Surface Normal Math
+│   ├── ascii-avatar.js          # 60 FPS ASCII Hologram Canvas Renderer
+│   ├── twin-agent.js            # Digital Twin Keyword Matching & Cadence Engine
+│   ├── twin-dock.js             # Chat Dock UI, Chips, Clear & Keyboard Shortcuts
+│   └── hero-layout.js           # Spotlight Glow & Dynamic Mobile Centering
+├── styles/
+│   ├── base.css                 # Base Portfolio Theme & Section Layouts
+│   ├── hero.css                 # Hero Panel, Flanks & ASCII Avatar Stage
+│   ├── twin-dock.css            # Digital Twin Dock & Bubbles
+│   └── responsive.css           # Mobile/Tablet Breakpoints (<1140px)
+├── img/                         # High-Resolution Assets, Portraits & Favicons
+└── old/                         # Archived Previous Portfolio Version (/old)
 ```
 
 ### [ ◈ DEPLOYMENT ]

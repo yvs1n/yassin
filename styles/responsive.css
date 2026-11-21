@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Responsive Breakpoints (<1140px) & Reduced-Motion Preferences
+   ========================================================================== */
+
+@media (max-width: 1140px) {
+    /* 1. Header vertically centered between top navbar and avatar head */
+    .hero-sidebar-flank {
+        position: absolute;
+        top: var(--mobile-flank-top, 110px);
+        z-index: 5;
+        gap: 0.35rem;
+    }
+
+    .flank-left {
+        left: 50%;
+        transform: translateX(calc(-100% - 0.45rem));
+        right: auto;
+        text-align: right;
+        align-items: flex-end;
+    }
+
+    .flank-right {
+        left: 50%;
+        transform: translateX(0.45rem);
+        right: auto;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .flank-title-wrap .hero-title {
+        font-size: clamp(2.2rem, 9.5vw, 3rem) !important;
+        line-height: 0.9 !important;
+    }
+
+    .hero-flank-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.22rem;
+        margin-top: 0.35rem;
+    }
+
+    .hero-meta-line {
+        font-size: clamp(0.52rem, 2.3vw, 0.65rem) !important;
+        letter-spacing: 0.12em !important;
+        white-space: nowrap;
+    }
+
+    /* 2. Avatar anchored to bottom of screen */
+    .hero-avatar-stage {
+        top: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        max-width: 490px;
+        height: 72dvh;
+        max-height: 72dvh;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    #ascii-avatar-canvas {
+        margin-bottom: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    /* 3. Chat dock constrained with dedicated right column for nav buttons */
+    .twin-dock-wrapper {
+        position: absolute;
+        bottom: 1.2rem;
+        left: 0.85rem;
+        right: 4.8rem;
+        width: auto;
+        max-width: none;
+        transform: none;
+        margin: 0;
+        z-index: 10;
+    }
+
+    .twin-dock-card {
+        --dock-radius: 14px;
+        --dock-pad: 10px;
+        padding: var(--dock-pad) 0.75rem;
+    }
+
+    /* Soft edge-fade carousel mask (no hard clipping on scrollable chips) */
+    .twin-chips-row {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 0.5rem 0.2rem 0.5rem;
+        gap: 0.35rem;
+        -webkit-mask-image: linear-gradient(90deg, transparent, black 6% 94%, transparent);
+        mask-image: linear-gradient(90deg, transparent, black 6% 94%, transparent);
+    }
+
+    .twin-chips-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    .twin-chip {
+        font-size: 0.62rem;
+        padding: 0.3rem 0.55rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .twin-input-form {
+        gap: 0.35rem;
+    }
+
+    .twin-input-field {
+        font-size: 0.75rem;
+    }
+
+    .twin-submit-btn {
+        padding: 0.4rem 0.65rem;
+        font-size: 0.72rem;
+    }
+
+    /* 4. Navigation buttons in dedicated right column */
+    .mobile-nav-controls {
+        position: fixed;
+        bottom: 1.2rem;
+        right: 0.85rem;
+        z-index: 9000;
+    }
+
+    .nav-btn {
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 1.1rem;
+    }
+
+    .scroll-indicator,
+    .hero-socials.social-sidebar {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .twin-bubble-row,
+    .twin-typing-dot {
+        animation: none !important;
+    }
+}
