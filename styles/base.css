@@ -1418,8 +1418,8 @@ body.classic-scroll .transition-curtain {
     position: fixed;
     top: 0;
     left: 0;
-    width: 360px;
-    height: 225px;
+    width: 396px;
+    height: 228px;
     pointer-events: none;
     z-index: 9998;
     overflow: hidden;
