@@ -138,7 +138,8 @@
     }
 
     .scroll-indicator,
-    .hero-socials.social-sidebar {
+    .hero-socials.social-sidebar,
+    .hero-quick-bar {
         display: none;
     }
 }

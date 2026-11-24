@@ -79,7 +79,7 @@
           "url": "https://yassinr.me/",
           "name": "Yassin Mohamed Ragab | Computer Engineering & AI Engineer",
           "dateCreated": "2026-09-08T00:00:00+04:00",
-          "dateModified": "2026-11-24T21:15:00+04:00",
+          "dateModified": "2026-11-24T23:59:00+04:00",
           "isPartOf": {
             "@id": "https://yassinr.me/#website"
           },
@@ -165,7 +165,7 @@
               "applicationCategory": "EducationalApplication",
               "operatingSystem": "Chrome, Web",
               "installUrl": "https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb",
-              "description": "Bilingual Arabic and English academic sidekick Chrome extension for Blackboard Learn Ultra with local NLP deadline extraction, UOS 4.0 weighted GPA tracking, and 528+ Vitest automated tests.",
+              "description": "Bilingual Arabic and English academic sidekick Chrome extension for Blackboard Learn Ultra with local NLP deadline extraction, UOS 4.0 weighted GPA tracking, and 724+ Vitest automated tests.",
               "author": { "@id": "https://yassinr.me/#person" }
             }
           ]
@@ -187,7 +187,7 @@
               "name": "What are Yassin Ragab's flagship software projects?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "His flagship projects include NaviCampus (https://navicampus.app/), a climate-aware and step-free accessible campus navigation engine built for extreme UAE heat, and Blackboarder (https://blackboarder.pages.dev/), a bilingual Arabic/English academic Chrome extension and companion PWA with local NLP parsing and 528+ tests."
+                "text": "His flagship projects include NaviCampus (https://navicampus.app/), a climate-aware and step-free accessible campus navigation engine built for extreme UAE heat, and Blackboarder (https://blackboarder.pages.dev/), a bilingual Arabic/English academic Chrome extension and companion PWA with local NLP parsing and 724+ tests."
               }
             },
             {
@@ -210,10 +210,10 @@
 
     <link rel="preload" as="image" href="img/yassin-ascii-source.webp?v=27" fetchpriority="high">
     <link rel="alternate" type="text/plain" href="https://yassinr.me/llms.txt" title="LLM-friendly portfolio summary">
-    <link rel="stylesheet" href="styles/base.css?v=27">
-    <link rel="stylesheet" href="styles/hero.css?v=27">
-    <link rel="stylesheet" href="styles/twin-dock.css?v=27">
-    <link rel="stylesheet" href="styles/responsive.css?v=27">
+    <link rel="stylesheet" href="styles/base.css?v=29">
+    <link rel="stylesheet" href="styles/hero.css?v=29">
+    <link rel="stylesheet" href="styles/twin-dock.css?v=29">
+    <link rel="stylesheet" href="styles/responsive.css?v=29">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
         rel="stylesheet">
@@ -234,44 +234,16 @@
         <button class="nav-btn down-btn" id="mobile-down">&#x2193;</button>
     </div>
 
-
-    <!-- ═══ PRELOADER ════════════════════════════════════════════ -->
-
-
-    <!-- [SCROLL MODE TOGGLE - DISABLED]
-    <button id="scroll-mode-toggle" class="scroll-mode-btn" aria-label="Toggle Scroll Mode">
-        <span class="btn-icon">◈</span>
-        <span class="btn-text">DYNAMIC</span>
-    </button>
-    -->
-
-    <div id="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-counter" id="preloader-counter">000</div>
-            <div class="preloader-name">
-                <span class="preloader-name-line">YASSIN</span>
-                <span class="preloader-name-line preloader-name-stroke">RAGAB</span>
-            </div>
-            <div class="preloader-bar-track">
-                <div class="preloader-bar-fill" id="preloader-bar"></div>
-            </div>
-            <p class="preloader-label">INITIALIZING PORTFOLIO</p>
-        </div>
-    </div>
-    <!-- ══════════════════════════════════════════════════════════ -->
-
     <!-- Interactive AI Neural Canvas Background -->
     <canvas id="neural-canvas"></canvas>
 
-    <!-- Fixed Desktop Nav (hidden until user scrolls past hero) -->
+    <!-- Fixed Desktop Nav -->
     <nav id="sticky-nav">
         <ul>
             <li><a href="#home" class="nav-link" data-index="0">Home</a></li>
-            <li><a href="#about" class="nav-link" data-index="1">Profile</a></li>
+            <li><a href="#projects" class="nav-link" data-index="1">Projects</a></li>
             <li><a href="#experience" class="nav-link" data-index="2">Experience</a></li>
-            <li><a href="#projects" class="nav-link" data-index="3">Projects</a></li>
-            <li><a href="#skills" class="nav-link" data-index="4">Capabilities</a></li>
-            <li><a href="#education" class="nav-link" data-index="5">Education</a></li>
+            <li><a href="#about" class="nav-link" data-index="3">About</a></li>
         </ul>
     </nav>
 
@@ -282,6 +254,10 @@
             <!-- Hero Section -->
             <section class="hero panel" id="home">
                 <h1 class="sr-only">Yassin Mohamed Ragab — Computer Engineering &amp; AI Engineer</h1>
+                <div class="hero-quick-bar" aria-label="Quick Actions">
+                    <a href="#projects" class="hero-quick-link nav-link" data-index="1">Projects ↓</a>
+                    <a href="cv.pdf" target="_blank" rel="noopener" class="hero-quick-link">CV ↗</a>
+                </div>
                 <!-- Hero Flank: LEFT (YASSIN + Academic Focus) -->
                 <div class="hero-sidebar-flank flank-left">
                     <div class="flank-title-wrap">
@@ -389,37 +365,306 @@
                 </div>
             </section>
 
-            <!-- About Section -->
+            <!-- Panel 01: Selected Projects -->
+            <section class="projects panel" id="projects">
+                <div class="container marquee-container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">01 / Selected Projects</h2>
+                    </div>
+                    <p class="section-lead-text">Production campus platforms, browser extensions, and real-time web systems.</p>
+
+                    <!-- Flagship Spotlight Grid (Tier 1) -->
+                    <div class="flagship-grid">
+                        <!-- Flagship 01: NaviCampus -->
+                        <article class="flagship-card" data-cursor-img="img/navicampus.webp">
+                            <div class="flagship-media-wrapper flagship-mobile-media">
+                                <img src="img/navicampus.webp" alt="NaviCampus Platform Interface" class="flagship-img" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <div class="flagship-body">
+                                <div class="flagship-header-row">
+                                    <span class="flagship-eyebrow">Enterprise Campus Navigation · 2026</span>
+                                    <div class="flagship-status">
+                                        <span class="status-dot"></span>
+                                        <span>Production System</span>
+                                    </div>
+                                </div>
+                                <h3 class="flagship-title">NaviCampus</h3>
+                                <p class="flagship-tagline">Climate-Aware & Accessible Campus Navigation Engine</p>
+                                <p class="flagship-desc">
+                                    Multi-tenant spatial mapping platform built to solve extreme desert heat and multi-floor navigation across university campuses.
+                                </p>
+                                <ul class="flagship-features-list">
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>"Coolest Route" Algorithm:</strong> Climate-aware routing through air-conditioned skywalks and shaded concourses.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>"Step-Free Route" Accessibility Engine:</strong> Strict barrier-free routing eliminating stairs and steep inclines.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Vector Topology Compiler:</strong> In-browser spatial editor compiling multi-floor plans into single-read graph bundles.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Zero-Latency Local Routing:</strong> Instant client-side graph pathfinding computed with zero server overhead.</span>
+                                    </li>
+                                </ul>
+                                <div class="flagship-tech-stack">
+                                    <span class="tech-tag">Vite</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">Leaflet / Canvas</span>
+                                    <span class="tech-tag">Firestore</span>
+                                    <span class="tech-tag">Cloudflare Pages</span>
+                                </div>
+                                <div class="flagship-actions">
+                                    <a href="https://navicampus.app/" target="_blank" rel="noopener" class="flagship-btn primary">
+                                        <span>Launch Platform</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                                    </a>
+                                    <a href="https://navicampus.app/app" target="_blank" rel="noopener" class="flagship-btn secondary">
+                                        <span>Open Web App</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Flagship 02: Blackboarder -->
+                        <article class="flagship-card" data-cursor-img="img/blackboarder.webp?v=24">
+                            <div class="flagship-media-wrapper flagship-mobile-media">
+                                <img src="img/blackboarder.webp?v=24" alt="Blackboarder Academic Sidekick Preview" class="flagship-img" width="1200" height="630" loading="lazy" decoding="async">
+                            </div>
+                            <div class="flagship-body">
+                                <div class="flagship-header-row">
+                                    <span class="flagship-eyebrow">Intelligent LMS Sidekick · 2026</span>
+                                    <div class="flagship-status">
+                                        <span class="status-dot"></span>
+                                        <span>Chrome Web Store</span>
+                                    </div>
+                                </div>
+                                <h3 class="flagship-title">Blackboarder</h3>
+                                <p class="flagship-tagline">Bilingual LMS Extension & Academic Deadline Companion</p>
+                                <p class="flagship-desc">
+                                    Bilingual academic companion for Blackboard Learn &amp; Ultra across 7 UAE universities, turning English &amp; Arabic announcements into structured deadlines and GPA projections.
+                                </p>
+                                <ul class="flagship-features-list">
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Bilingual NLP Parser:</strong> Extracts Arabic &amp; English dates and colloquialisms (e.g. "الأحد بعد القادم") with optional hybrid AI.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Automated Gradebook &amp; GPA Engine:</strong> Matches syllabus weights and projects Term SGPA &amp; Cumulative CGPA across 7 UAE presets.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Zero-Knowledge AES-256-GCM Sync:</strong> End-to-end encrypted multi-device sync via 10-char keys with zero accounts required.</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        <span><strong>Live WebCal Feeds &amp; PWA:</strong> Live .ics calendar feeds for Apple, Google, and Outlook plus offline companion PWA &amp; desktop widget.</span>
+                                    </li>
+                                </ul>
+                                <div class="flagship-tech-stack">
+                                    <span class="tech-tag">Chrome MV3</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">Cloudflare Workers</span>
+                                    <span class="tech-tag">AES-256-GCM</span>
+                                    <span class="tech-tag">PWA</span>
+                                    <span class="tech-tag">Vitest (724+ tests)</span>
+                                </div>
+                                <div class="flagship-actions">
+                                    <a href="https://blackboarder.pages.dev/" target="_blank" rel="noopener" class="flagship-btn primary">
+                                        <span>Visit Official Site</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                                    </a>
+                                    <a href="https://github.com/yvs1n/blackboarder-extension" target="_blank" rel="noopener" class="flagship-btn secondary">
+                                        <span>GitHub Extension</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    </a>
+                                    <a href="https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb" target="_blank" rel="noopener" class="flagship-btn secondary">
+                                        <span>Chrome Web Store</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Subheading for Curated Web Platforms (Tier 2) -->
+                    <div class="projects-subheading">
+                        <h3>01.2 / Engineered Platforms</h3>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <div class="projects-list">
+                        <div class="project-row fade-up" data-cursor-img="img/elementa.webp">
+                            <a href="https://elementaa.vercel.app/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>Elementa</h3>
+                                <p>Full-stack educational platform with progress tracking &amp; video walkthroughs</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/elementa" target="_blank" rel="noopener" class="github-subtle-link" aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+
+                        <div class="project-row fade-up" data-cursor-img="img/british-council.webp">
+                            <a href="https://bc101.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>British Curriculum 101</h3>
+                                <p>Interactive study hub featuring an integrated page summarizer</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/bc101/" target="_blank" rel="noopener" class="github-subtle-link" aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+
+                        <div class="project-row fade-up" data-cursor-img="img/spy-game.webp">
+                            <a href="https://spy-game-0pla.onrender.com/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>Spy Game Companion</h3>
+                                <p>Multiplayer web app with real-time WebSocket session persistence</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/spygame" target="_blank" rel="noopener" class="github-subtle-link" aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+                                </a>
+                                <div class="project-row-year">2026</div>
+                            </div>
+                        </div>
+
+                        <div class="project-row fade-up" data-cursor-img="img/tranz.webp">
+                            <a href="https://tranz.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>TranZ · CodeX UAE</h3>
+                                <p>National school-level web creation competition finalist platform</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <a href="https://github.com/yvs1n/tranz" target="_blank" rel="noopener" class="github-subtle-link" aria-label="View Source Code">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+                                </a>
+                                <div class="project-row-year">2023</div>
+                            </div>
+                        </div>
+
+                        <div class="project-row fade-up" data-cursor-img="img/fundfair.webp">
+                            <a href="https://fundfair.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>FundFair</h3>
+                                <p>Digital startup showcase &amp; community fundraising ecosystem</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <div class="project-row-year">2024</div>
+                            </div>
+                        </div>
+
+                        <div class="project-row fade-up" data-cursor-img="img/ssfim.webp">
+                            <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
+                            <div class="project-row-content">
+                                <h3>SSFIM Platform</h3>
+                                <p>Space settlement architecture presented to GEMS Senior VP of Education</p>
+                            </div>
+                            <div class="project-row-year-meta">
+                                <div class="project-row-year">2023</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 02: Experience -->
+            <section class="experience panel" id="experience">
+                <div class="container">
+                    <div class="reveal-mask">
+                        <h2 class="section-heading">02 / Experience</h2>
+                    </div>
+
+                    <div class="timeline-list">
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Sep 2025 — Nov 2026</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Academic Teaching Assistant<br>(Statistics &amp; Physics)</h3>
+                                <p class="company">Pearson Edexcel · 1,000+ Students Mentored</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Promoted across IGCSE Physics, AS-Level Physics, and A-Level Statistics 1. Led structured problem-solving sessions covering probability, circular motion, and fields, evaluated student assessments with detailed feedback, moderated live virtual Q&amp;As for over 1,000 students, and served as primary parent liaison.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">2022 — Jul 2026</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Head of Digital Strategy &amp;<br>Community Management</h3>
+                                <p class="company">GEMS Westminster School RAK</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Scaled institutional digital reach to 500,000+ views, 20k+ profile visits, and a flagship release exceeding 100k views. Pioneered Generative AI photo restoration across 100+ graduating seniors and built automated Google Calendar tribute workflows.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">Sep 2025 — Jul 2026</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Head Boy &amp;<br>Deputy Head Boy</h3>
+                                <p class="company">GEMS Westminster School RAK</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Elected Head Boy (Dec 2025 – Jan 2026) and Deputy Head Boy (2025–2026), progressing from Senior Prefect (2023–2024) and Ruby House Captain (2024–2025). Directed whole-school assemblies and coordinated student-wide initiatives.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-row">
+                            <div class="time-col">
+                                <span class="date">2022 — Present</span>
+                            </div>
+                            <div class="role-col">
+                                <h3>Independent Systems &amp;<br>Software Builder</h3>
+                                <p class="company">NaviCampus · Blackboarder · Web Platforms</p>
+                            </div>
+                            <div class="desc-col">
+                                <p>Architected production student systems including <a href="https://navicampus.app/" target="_blank" rel="noopener" class="highlight-link">NaviCampus</a> and <a href="https://blackboarder.pages.dev/" target="_blank" rel="noopener" class="highlight-link">Blackboarder</a>, delivered custom Chrome themes and web tools for international clients, and built <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="highlight-link">SSFIM</a> (presented to Ranju Anand, SVP of Education at GEMS Education).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 03: Profile, Capabilities & Education -->
             <section class="about panel" id="about">
                 <div class="container">
                     <div class="reveal-mask">
-                        <h2 class="section-heading">01 / Profile</h2>
+                        <h2 class="section-heading">03 / Profile, Stack &amp; Education</h2>
                     </div>
+
                     <div class="about-grid">
                         <div class="about-text">
                             <p class="split-lines headline">
                                 I don't just write code. I build second brains.
                             </p>
                             <p class="split-lines body-text">
-                                Greetings. I'm Yassin Mohamed Ragab, a Computer Engineering freshman at the University of
-                                Sharjah and former Head Boy at GEMS Westminster School Ras Al Khaimah. I engineer
-                                intelligent AI systems and robust full-stack infrastructure that act as force-multipliers
-                                for human potential.
+                                I'm Yassin Mohamed Ragab, a Computer Engineering freshman at the University of Sharjah (2026–2030) engineering practical AI workflows, spatial routing systems, and high-craft web software.
                             </p>
                             <p class="split-lines body-text">
-                                My engineering philosophy is brutally effective: I deconstruct massive, multi-dimensional
-                                problems into their first-principles components, map out scalable architectures, and
-                                execute flawlessly from the ground up.
+                                My engineering philosophy starts from first principles: deconstruct friction into clean data structures, eliminate bloat, and ship fast software with zero unnecessary dependencies.
                             </p>
-                            <p class="split-lines body-text">
-                                Whether scaling digital reach to 500,000+ views, engineering full-stack platforms like
-                                Elementa and British Curriculum 101, pioneering Generative AI workflows, or mentoring
-                                thousands of students across Mathematics and Physics—I bridge technical rigor with
-                                visionary leadership.
-                            </p>
-                            <a href="#projects" class="magnetic-btn nav-link mt-4" data-index="3">Explore My Work
-                                <span>&#x2192;</span></a>
+                            <a href="#projects" class="magnetic-btn nav-link mt-4" data-index="1">View Selected Work <span>&#x2192;</span></a>
                         </div>
+
                         <div class="about-stats" id="sidebar-stats">
                             <figure class="about-portrait">
                                 <img src="img/yassin-portrait.webp" alt="Portrait of Yassin Mohamed Ragab"
@@ -444,12 +689,12 @@
                                         <p>UOS CompEng</p>
                                     </div>
                                     <div class="stat-box">
-                                        <h3 class="stat-num">500K+</h3>
-                                        <p>Digital Reach</p>
+                                        <h3 class="stat-num">724+</h3>
+                                        <p>Automated Tests</p>
                                     </div>
                                     <div class="stat-box">
-                                        <h3 class="stat-num">15+</h3>
-                                        <p>Systems Deployed</p>
+                                        <h3 class="stat-num">1,000+</h3>
+                                        <p>Students Mentored</p>
                                     </div>
                                     <div class="stat-box">
                                         <h3 class="stat-num">8 A*/A</h3>
@@ -459,493 +704,47 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Experience Section -->
-            <section class="experience panel" id="experience">
-                <div class="container">
-                    <div class="reveal-mask">
-                        <h2 class="section-heading">02 / Experience</h2>
-                    </div>
-
-                    <div class="timeline-list">
-
-                        <!-- Timeline Item 01 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">Feb 2026 — Nov 2026</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Teacher Assistant<br>(Statistics 1 A-Level)</h3>
-                                <p class="company">Pearson Edexcel · Mr. Youssef Ahmed</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Specialized in Statistics 1 support (probability, discrete random variables, and
-                                    normal distribution). Facilitated problem-solving sessions breaking down multi-step
-                                    exam questions, evaluated student assessments with detailed methodological feedback,
-                                    and moderated live virtual Q&A sessions for over 1,000 students.</p>
-                            </div>
-                        </div>
-
-                        <!-- Timeline Item 02 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">Feb 2026 — Jul 2026</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Teacher Assistant<br>(Physics AS-Level)</h3>
-                                <p class="company">Pearson Edexcel · Mr. Hussein Khaled</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Promoted to AS-Level support, parent communication liaison, and primary academic
-                                    mentor for Circular Motion, Gravitational & Electric Fields, and Particle Physics.
-                                    Transformed student outcomes through structured coaching on advanced theoretical
-                                    mechanics.</p>
-                            </div>
-                        </div>
-
-                        <!-- Timeline Item 03 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">Sep 2025 — Feb 2026</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Teacher Assistant<br>(Physics IGCSE)</h3>
-                                <p class="company">Pearson Edexcel · Mr. Hussein Khaled</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Supervised online assessments and enforced academic integrity. Managed student Q&A
-                                    and provided dedicated academic mentoring for IGCSE & A-Level Physics, collaborating
-                                    closely with instructors for seamless delivery.</p>
-                            </div>
-                        </div>
-
-                        <!-- Timeline Item 04 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">2022 — Jul 2026</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Head of Digital Strategy &<br>Community Management</h3>
-                                <p class="company">GEMS Westminster School RAK</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Scaled senior digital presence to 500,000+ views, 20k+ profile visits, 9,800+ likes,
-                                    3,700+ shares, and a viral asset exceeding 100k views. Pioneered Generative AI for
-                                    bulk photo restoration (100+ students), built automated Google Calendar tribute
-                                    workflows, and produced end-to-end motion graphics and video communications.</p>
-                            </div>
-                        </div>
-
-                        <!-- Timeline Item 05 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">Sep 2025 — Jul 2026</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Head Boy &<br>Deputy Head Boy</h3>
-                                <p class="company">GEMS Westminster School RAK</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Served as Head Boy (Dec 2025 – Jan 2026) and Deputy Head Boy (Sep 2025 – Dec 2025 &
-                                    Jan 2026 – Jul 2026). Former Ruby House Captain (2024–2025) and Senior Prefect
-                                    (2023–2024). Directed school assemblies, Co-ordinated Spelling Bee (2026), and
-                                    hosted a Sustainable Escape Room project (2024).</p>
-                            </div>
-                        </div>
-
-                        <!-- Timeline Item 06 -->
-                        <div class="timeline-row">
-                            <div class="time-col">
-                                <span class="date">2022 — Present</span>
-                            </div>
-                            <div class="role-col">
-                                <h3>Founder &<br>Freelance Creator</h3>
-                                <p class="company">Fiverr & Independent Web Projects</p>
-                            </div>
-                            <div class="desc-col">
-                                <p>Built a solid international freelance client base on Fiverr generating $150+ revenue
-                                    across custom Google Chrome themes, visual assets, and media projects. Founder of
-                                    <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="highlight-link">SSFIM</a>,
-                                    <a href="https://fundfair.pages.dev/" target="_blank" rel="noopener" class="highlight-link">FundFair</a>,
-                                    and <a href="https://tranz.pages.dev/" target="_blank" rel="noopener" class="highlight-link">TranZ</a>.
-                                    Presented SSFIM directly to Ranju Anand, Senior VP of Education at GEMS Education.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section class="projects panel" id="projects">
-                <div class="container marquee-container">
-                    <div class="reveal-mask">
-                        <h2 class="section-heading">03 / Selected Projects</h2>
-                    </div>
-                    <p class="section-lead-text">Flagship platforms, intelligent extensions, and engineered web architectures.</p>
-
-                    <!-- Flagship Spotlight Grid (Tier 1) -->
-                    <div class="flagship-grid">
-                        <!-- Flagship 01: NaviCampus -->
-                        <article class="flagship-card" data-cursor-img="img/navicampus.webp">
-                            <!-- Mobile-only media preview banner -->
-                            <div class="flagship-media-wrapper flagship-mobile-media">
-                                <img src="img/navicampus.webp" alt="NaviCampus Platform Interface" class="flagship-img" width="1200" height="630" loading="lazy" decoding="async">
-                            </div>
-                            <div class="flagship-body">
-                                <div class="flagship-header-row">
-                                    <span class="flagship-eyebrow">Enterprise Campus Navigation · 2026</span>
-                                    <div class="flagship-status">
-                                        <span class="status-dot"></span>
-                                        <span>Production System</span>
-                                    </div>
-                                </div>
-                                <h3 class="flagship-title">NaviCampus</h3>
-                                <p class="flagship-tagline">Climate-Aware & Accessible Campus Navigation Engine</p>
-                                <p class="flagship-desc">
-                                    Multi-tenant spatial mapping platform built to solve extreme desert heat and complex multi-floor navigation across university campuses.
-                                </p>
-                                <ul class="flagship-features-list">
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>"Coolest Route" Algorithm:</strong> Climate-aware routing through air-conditioned skywalks and shaded concourses.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>"Step-Free Route" Accessibility Engine:</strong> Strict barrier-free routing eliminating stairs and steep inclines.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Vector Topology Compiler:</strong> In-browser spatial canvas editor compiling multi-floor plans into single-read graph bundles.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Zero-Latency Local Routing:</strong> Instant client-side graph pathfinding computed with zero server overhead.</span>
-                                    </li>
-                                </ul>
-                                <div class="flagship-tech-stack">
-                                    <span class="tech-tag">Vite</span>
-                                    <span class="tech-tag">TypeScript</span>
-                                    <span class="tech-tag">Leaflet / Canvas</span>
-                                    <span class="tech-tag">Firestore</span>
-                                    <span class="tech-tag">Firebase Storage</span>
-                                    <span class="tech-tag">Cloudflare Pages</span>
-                                </div>
-                                <div class="flagship-actions">
-                                    <a href="https://navicampus.app/" target="_blank" rel="noopener" class="flagship-btn primary">
-                                        <span>Launch Platform</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                                    </a>
-                                    <a href="https://navicampus.app/app" target="_blank" rel="noopener" class="flagship-btn secondary">
-                                        <span>Open Web App</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Flagship 02: Blackboarder -->
-                        <article class="flagship-card" data-cursor-img="img/blackboarder.webp?v=24">
-                            <!-- Mobile-only media preview banner -->
-                            <div class="flagship-media-wrapper flagship-mobile-media">
-                                <img src="img/blackboarder.webp?v=24" alt="Blackboarder Academic Sidekick Preview" class="flagship-img" width="1200" height="630" loading="lazy" decoding="async">
-                            </div>
-                            <div class="flagship-body">
-                                <div class="flagship-header-row">
-                                    <span class="flagship-eyebrow">Intelligent LMS Sidekick · 2026</span>
-                                    <div class="flagship-status">
-                                        <span class="status-dot"></span>
-                                        <span>Active Release</span>
-                                    </div>
-                                </div>
-                                <h3 class="flagship-title">Blackboarder</h3>
-                                <p class="flagship-tagline">Bilingual LMS Extension & Academic Deadline Companion</p>
-                                <p class="flagship-desc">
-                                    Bilingual academic sidekick for Blackboard Learn Ultra that parses buried quiz dates, exam deadlines, and room changes from unstructured announcements and syncs with the live gradebook.
-                                </p>
-                                <ul class="flagship-features-list">
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Bilingual NLP Parser:</strong> Local parser recognizing Arabic & English dates and colloquialisms (e.g. "الأحد بعد القادم") with optional hybrid AI.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Automated Gradebook & GPA Engine:</strong> Pulls official marks, matches syllabus weights, and projects cumulative GPA on UOS 4.0 scale.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Zero-Knowledge Multi-Device Sync:</strong> Private 10-char cryptographic sync keys without accounts; server-side encrypted AI key locker.</span>
-                                    </li>
-                                    <li>
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                                        <span><strong>Live Calendar Subscriptions & Push:</strong> Live .ics / WebCal feeds for Apple, Google, and Outlook, plus offline-first PWA with Web Push.</span>
-                                    </li>
-                                </ul>
-                                <div class="flagship-tech-stack">
-                                    <span class="tech-tag">Chrome MV3</span>
-                                    <span class="tech-tag">TypeScript</span>
-                                    <span class="tech-tag">Cloudflare Pages Worker</span>
-                                    <span class="tech-tag">Firebase RTDB</span>
-                                    <span class="tech-tag">PWA</span>
-                                    <span class="tech-tag">Vitest (528 tests)</span>
-                                </div>
-                                <div class="flagship-actions">
-                                    <a href="https://blackboarder.pages.dev/" target="_blank" rel="noopener" class="flagship-btn primary">
-                                        <span>Visit Official Site</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                                    </a>
-                                    <a href="https://github.com/yvs1n/blackboarder-extension" target="_blank" rel="noopener" class="flagship-btn secondary">
-                                        <span>GitHub Extension</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                                    </a>
-                                    <a href="https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb" target="_blank" rel="noopener" class="flagship-btn secondary">
-                                        <span>Chrome Web Store</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Subheading for Curated Web Platforms (Tier 2) -->
-                    <div class="projects-subheading">
-                        <h3>03.2 / Other Engineered Platforms</h3>
-                        <div class="divider-line"></div>
-                    </div>
-
-                    <div class="projects-list">
-                        <!-- Project 01: Elementa -->
-                        <div class="project-row fade-up" data-cursor-img="img/elementa.webp">
-                            <a href="https://elementaa.vercel.app/" target="_blank" rel="noopener" class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>Elementa</h3>
-                                <p>Full-stack educational platform with progress tracking & video walkthroughs</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/elementa" target="_blank" rel="noopener" class="github-subtle-link"
-                                    aria-label="View Source Code">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-github">
-                                        <path
-                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                                    </svg>
-                                </a>
-                                <div class="project-row-year">2026</div>
-                            </div>
-                        </div>
-
-                        <!-- Project 02: British Curriculum Hub (BC101) -->
-                        <div class="project-row fade-up" data-cursor-img="img/british-council.webp"
-                            style="animation-delay: 0.1s;">
-                            <a href="https://bc101.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>British Curriculum 101</h3>
-                                <p>Interactive resource hub featuring an integrated page summarizer</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/bc101/" target="_blank" rel="noopener" class="github-subtle-link"
-                                    aria-label="View Source Code">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-github">
-                                        <path
-                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                                    </svg>
-                                </a>
-                                <div class="project-row-year">2026</div>
-                            </div>
-                        </div>
-
-                        <!-- Project 03: Spy Game Companion -->
-                        <div class="project-row fade-up" data-cursor-img="img/spy-game.webp"
-                            style="animation-delay: 0.15s;">
-                            <a href="https://spy-game-0pla.onrender.com/" target="_blank" rel="noopener"
-                                class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>Spy Game Companion</h3>
-                                <p>Mobile app with real-time persistent session handling</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/spygame" target="_blank" rel="noopener" class="github-subtle-link"
-                                    aria-label="View Source Code">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-github">
-                                        <path
-                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                                    </svg>
-                                </a>
-                                <div class="project-row-year">2026</div>
-                            </div>
-                        </div>
-
-                        <!-- Project 04: FundFair -->
-                        <div class="project-row fade-up" data-cursor-img="img/fundfair.webp"
-                            style="animation-delay: 0.2s;">
-                            <a href="https://fundfair.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>FundFair</h3>
-                                <p>Interactive digital finance and community fundraising ecosystem</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <div class="project-row-year">2024</div>
-                            </div>
-                        </div>
-
-                        <!-- Project 05: TranZ (CodeX UAE) -->
-                        <div class="project-row fade-up" data-cursor-img="img/tranz.webp"
-                            style="animation-delay: 0.25s;">
-                            <a href="https://tranz.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>TranZ · CodeX UAE</h3>
-                                <p>National school-level web creation competition finalist platform</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <a href="https://github.com/yvs1n/tranz" target="_blank" rel="noopener" class="github-subtle-link"
-                                    aria-label="View Source Code">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-github">
-                                        <path
-                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                                    </svg>
-                                </a>
-                                <div class="project-row-year">2023</div>
-                            </div>
-                        </div>
-
-                        <!-- Project 06: SSFIM Project -->
-                        <div class="project-row fade-up" data-cursor-img="img/ssfim.webp"
-                            style="animation-delay: 0.3s;">
-                            <a href="https://ssfim.pages.dev/" target="_blank" rel="noopener" class="project-link-overlay"></a>
-                            <div class="project-row-content">
-                                <h3>SSFIM Platform</h3>
-                                <p>Space settlement framework presented to GEMS Senior VP of Education</p>
-                            </div>
-                            <div class="project-row-year-meta">
-                                <div class="project-row-year">2023</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills & Certifications Section -->
-            <section class="skills panel" id="skills">
-                <div class="container marquee-container">
-                    <div class="reveal-mask">
-                        <h2 class="section-heading">04 / Capabilities & Certifications</h2>
-                    </div>
-
-                    <!-- Core Stack Magnetic Cloud -->
-                    <div class="skills-wrapper">
-                        <div class="magnetic-skill">Full-Stack Web</div>
-                        <div class="magnetic-skill">JavaScript (ES6+)</div>
-                        <div class="magnetic-skill">Node.js</div>
-                        <div class="magnetic-skill">Socket.io</div>
-                        <div class="magnetic-skill">Cloud Firestore</div>
-                        <div class="magnetic-skill">Firebase Backend</div>
-                        <div class="magnetic-skill">Gemini API</div>
-                        <div class="magnetic-skill">RESTful APIs</div>
-                        <div class="magnetic-skill">Three.js & WebGL</div>
-                        <div class="magnetic-skill">GSAP Animations</div>
-                    </div>
-
-                    <!-- Categorized Technical Breakdown -->
+                    <h3 class="sub-section-title" style="margin-top: 4rem;">Core Engineering Stack</h3>
                     <div class="skills-category-grid">
                         <div class="skill-category-card">
-                            <h3><span style="color: var(--secondary);">01</span> Languages & Web</h3>
+                            <h3><span style="color: var(--secondary);">01</span> Languages &amp; Web</h3>
                             <ul class="skill-item-list">
-                                <li class="skill-item">HTML5</li>
-                                <li class="skill-item">CSS3</li>
+                                <li class="skill-item">TypeScript</li>
                                 <li class="skill-item">JavaScript (ES6+)</li>
-                                <li class="skill-item">Socket.io</li>
-                                <li class="skill-item">Node.js</li>
-                                <li class="skill-item">RESTful APIs</li>
+                                <li class="skill-item">Python</li>
+                                <li class="skill-item">Chrome Extensions (MV3)</li>
                                 <li class="skill-item">WebSockets</li>
+                                <li class="skill-item">REST APIs</li>
                             </ul>
                         </div>
 
                         <div class="skill-category-card">
-                            <h3><span style="color: var(--secondary);">02</span> AI & Cloud Tools</h3>
+                            <h3><span style="color: var(--secondary);">02</span> AI, Spatial &amp; Cloud</h3>
                             <ul class="skill-item-list">
+                                <li class="skill-item">Local &amp; Hybrid NLP</li>
                                 <li class="skill-item">Gemini API</li>
-                                <li class="skill-item">Cloud Firestore</li>
-                                <li class="skill-item">Firebase</li>
-                                <li class="skill-item">Generative AI</li>
-                                <li class="skill-item">Serverless</li>
-                                <li class="skill-item">Automation</li>
+                                <li class="skill-item">Cloudflare Workers</li>
+                                <li class="skill-item">Firebase &amp; Firestore</li>
+                                <li class="skill-item">Leaflet &amp; Canvas 2D</li>
+                                <li class="skill-item">AES-256-GCM Crypto</li>
                             </ul>
                         </div>
 
                         <div class="skill-category-card">
-                            <h3><span style="color: var(--secondary);">03</span> Media & Production</h3>
+                            <h3><span style="color: var(--secondary);">03</span> Tooling &amp; Motion</h3>
                             <ul class="skill-item-list">
-                                <li class="skill-item">Adobe Premiere Pro</li>
-                                <li class="skill-item">Adobe Photoshop</li>
-                                <li class="skill-item">Keyframe Animation</li>
-                                <li class="skill-item">Motion Graphics</li>
-                                <li class="skill-item">Animaker</li>
+                                <li class="skill-item">Vitest</li>
+                                <li class="skill-item">Vite</li>
+                                <li class="skill-item">GSAP</li>
+                                <li class="skill-item">PWA / Service Workers</li>
+                                <li class="skill-item">Premiere Pro</li>
+                                <li class="skill-item">Photoshop</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Certifications & Recognitions Grid -->
-                    <h3 class="sub-section-title">Certifications & Accreditations</h3>
-                    <div class="certs-grid">
-                        <div class="cert-card">
-                            <h4>Google AI for Educators</h4>
-                            <span class="cert-issuer">Google Skillshop</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>Microsoft Innovative Educator (MIE)</h4>
-                            <span class="cert-issuer">Microsoft Education</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>Cloud Computing Certification</h4>
-                            <span class="cert-issuer">Great Learning</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>AI Tools for Infrastructure</h4>
-                            <span class="cert-issuer">Arab Academy for Innovators</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>Metahack Coding</h4>
-                            <span class="cert-issuer">SmartKid</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>Animaker Proficiency Training</h4>
-                            <span class="cert-issuer">Animaker</span>
-                        </div>
-
-                        <div class="cert-card">
-                            <h4>Bilingual Proficiency (IELTS 7.5)</h4>
-                            <span class="cert-issuer">IELTS Academic</span>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Education & Honors Section -->
-            <section class="education panel" id="education">
-                <div class="container">
-                    <div class="reveal-mask">
-                        <h2 class="section-heading">05 / Education & Honors</h2>
-                    </div>
-
-                    <!-- Dual Education Cards -->
+                    <h3 class="sub-section-title" style="margin-top: 4rem;">Education &amp; Recognition</h3>
                     <div class="edu-grid-two">
                         <div class="edu-box">
                             <div>
@@ -953,8 +752,7 @@
                                 <p class="institution">University of Sharjah</p>
                                 <span class="edu-period">August 2026 — May 2030 (Freshman)</span>
                                 <p class="edu-details">
-                                    Enrolled in the College of Computing and Informatics. Focus on computer systems,
-                                    software architecture, algorithms, intelligent systems, and full-stack development.
+                                    College of Computing &amp; Informatics. Focus on computer systems, algorithms, spatial software, and applied AI engineering.
                                 </p>
                             </div>
                             <div>
@@ -964,13 +762,12 @@
 
                         <div class="edu-box">
                             <div>
-                                <h3>High School Diploma · IGCSE British Curriculum</h3>
+                                <h3>High School Diploma · IGCSE &amp; A-Level</h3>
                                 <p class="institution">GEMS Westminster School Ras Al Khaimah</p>
                                 <span class="edu-period">September 2019 — June 2026</span>
                                 <p class="edu-details">
                                     <strong>A* in A-Level Mathematics</strong><br>
-                                    <strong>4 A*s & 4 As in IGCSEs (8 Subjects)</strong> including Mathematics, Physics,
-                                    Chemistry, and ICT.
+                                    <strong>4 A*s &amp; 4 As in IGCSEs</strong> (Mathematics, Physics, Chemistry, ICT) · IELTS Academic 7.5
                                 </p>
                             </div>
                             <div>
@@ -979,53 +776,27 @@
                         </div>
                     </div>
 
-                    <!-- Honors, Leadership & Public Engagement Grid -->
-                    <h3 class="sub-section-title">Honors, Leadership & Public Engagement</h3>
-                    <div class="honors-grid-layout">
-                        <div class="honor-item">
-                            <h4>SSFIM Space Settlement Presentation</h4>
-                            <span class="honor-meta">Executive Presentation — 2023</span>
-                            <p>Presented the SSFIM space settlement architecture directly to Ranju Anand, Senior Vice President of Education at GEMS Education.</p>
-                        </div>
-
-                        <div class="honor-item">
-                            <h4>Candidate for GEMS Awards</h4>
-                            <span class="honor-meta">2022 — 2023</span>
-                            <p>Nominated for the prestigious network-wide GEMS Education Awards celebrating exceptional
-                                student contribution.</p>
-                        </div>
-
+                    <div class="honors-grid-layout" style="margin-top: 2rem;">
                         <div class="honor-item">
                             <h4>First International Forum for Arabic Students</h4>
                             <span class="honor-meta">Sharjah · 2025</span>
-                            <p>Presented review on stage in Arabic before H.E. Dr. Muhadditha Alhashimi (President of
-                                Sharjah Education Academy, Chair of SPEA), attended by H.H. Sheikh Dr. Sultan bin
-                                Muhammad Al Qasimi, Ruler of Sharjah.</p>
+                            <p>Delivered stage address in Arabic before H.E. Dr. Muhadditha Alhashimi (Chair of SPEA), attended by H.H. Sheikh Dr. Sultan bin Muhammad Al Qasimi, Ruler of Sharjah.</p>
                         </div>
 
                         <div class="honor-item">
-                            <h4>Story Writing Competition</h4>
-                            <span class="honor-meta">Emirates Literature Foundation · 2024</span>
-                            <p>Awarded Honorable Mention in the national creative writing competition organized by the
-                                Emirates Literature Foundation.</p>
+                            <h4>SSFIM Space Settlement Presentation</h4>
+                            <span class="honor-meta">Executive Briefing · 2023</span>
+                            <p>Presented SSFIM systems architecture directly to Ranju Anand, Senior Vice President of Education at GEMS Education.</p>
                         </div>
 
                         <div class="honor-item">
-                            <h4>Sports & Endurance Marathons</h4>
-                            <span class="honor-meta">2025 — 2026</span>
-                            <p>Completed RAK 5k Marathon (2026), RAK MHSU Mini Marathon (2025), and Terry Fox Marathon in
-                                Ras Al Khaimah (2025).</p>
-                        </div>
-
-                        <div class="honor-item">
-                            <h4>Leadership & Student Advocacy</h4>
-                            <span class="honor-meta">2023 — 2026</span>
-                            <p>Ruby House Captain (2024–2025), Senior Prefect (2023–2024), Spelling Bee Co-ordinator
-                                (2026) & Judge (2023), and Sustainable Escape Room Host (2024).</p>
+                            <h4>GEMS Awards &amp; Literature Recognition</h4>
+                            <span class="honor-meta">2022 — 2024</span>
+                            <p>GEMS network-wide Awards Nominee (2022–2023) and Honorable Mention, Emirates Literature Foundation Story Writing Competition (2024).</p>
                         </div>
                     </div>
 
-                    <footer class="footer" style="text-align: left; align-items: flex-start; margin-top: 2rem;">
+                    <footer class="footer" style="text-align: left; align-items: flex-start; margin-top: 3rem;">
                         <div class="footer-signature" aria-hidden="true"
                             style="position: relative; display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 2rem;">
                             <div class="hero-title glitch-layered extrude"
@@ -1046,7 +817,6 @@
                                     <span class="email-sep">·</span>
                                     <a href="mailto:yassin@navicampus.app" class="footer-email-link">yassin@navicampus.app</a>
                                 </div>
-                                <!-- Mobile Only: Sensor Sync -->
                                 <div class="mobile-only sensor-sync">
                                     <button onclick="enableGyro()" class="magnetic-link">SYNC SENSORS ↻</button>
                                 </div>
@@ -1140,8 +910,8 @@
         </div>
     </div>
 
-    <script src="components/portfolio-core.js?v=27" defer></script>
-    <script type="module" src="script.js?v=28"></script>
+    <script src="components/portfolio-core.js?v=29" defer></script>
+    <script type="module" src="script.js?v=29"></script>
 </body>
 
 </html>

@@ -1,79 +1,5 @@
-// ═══ PRELOADER ══════════════════════════════════════════════════
-(function () {
-    const preloader   = document.getElementById('preloader');
-    const counterEl   = document.getElementById('preloader-counter');
-    const barEl       = document.getElementById('preloader-bar');
-
-    if (!preloader) return;
-
-    // Prevent scroll while loading
-    document.body.style.overflow = 'hidden';
-
-    let current   = 0;
-    let target    = 0;
-    let nameShown = false;
-    let rafId;
-
-    // Pad counter to always be 3 digits
-    function pad(n) { return String(Math.floor(n)).padStart(3, '0'); }
-
-    // Smoothly animate counter toward target. Time-based, so a slow device
-    // takes the same ~1.3s as a fast one instead of crawling frame by frame.
-    let lastTime = performance.now();
-    function tick(now) {
-        const dt = Math.min((now || performance.now()) - lastTime, 250);
-        lastTime = now || performance.now();
-        if (current < target) {
-            current = Math.min(current + dt * 0.14, target);
-            counterEl.textContent = pad(current);
-            barEl.style.width     = current + '%';
-
-            // Reveal name at 60%
-            if (current >= 60 && !nameShown) {
-                nameShown = true;
-                preloader.classList.add('name-in');
-            }
-        }
-
-        if (current < 100) {
-            rafId = requestAnimationFrame(tick);
-        } else {
-            // Brief pause at 100 so interactive UI unlocks quickly
-            setTimeout(dismissPreloader, 180);
-        }
-    }
-
-    function dismissPreloader() {
-        preloader.classList.add('done');
-        // REMOVED: document.body.style.overflow = ''; 
-        // We keep it locked to prevent browser-level bounce/jitter
-
-        // Remove from DOM after transition completes
-        preloader.addEventListener('transitionend', () => {
-            preloader.remove();
-        }, { once: true });
-
-        // Trigger hero GSAP animations now that content is visible
-        if (typeof triggerHeroAnimations === 'function') {
-            triggerHeroAnimations();
-        }
-    }
-
-    // Finish once the page and scripts are ready. Images keep loading in the
-    // background, so a slow connection no longer holds the loader on screen.
-    function updateProgress() {
-        if (document.readyState !== 'loading') {
-            target = 100;
-        } else {
-            target = Math.min(target + (Math.random() * 8 + 3), 90);
-            setTimeout(updateProgress, 180);
-        }
-    }
-
-    updateProgress();
-    rafId = requestAnimationFrame(tick);
-    document.addEventListener('DOMContentLoaded', () => { target = 100; });
-})();
+// Keep body scroll locked to preserve panel transitions without bounce
+document.body.style.overflow = 'hidden';
 
 // Only honour the system "reduce motion" setting on touch devices (phones/tablets)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce) and (pointer: coarse)').matches;
@@ -343,14 +269,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (cursorDot) cursorDot.style.display = 'none';
         if (cursorImgContainer) cursorImgContainer.style.display = 'none';
     }
-    // Terminal Typing Animation
+    // Terminal Typing Animation (Profile Console)
     const terminalLines = [
-        "> initializing_second_brain.sh...",
-        "> connecting_uos_comp_eng_network... [OK]",
-        "> digital_reach = 500000+; [VERIFIED]",
-        "> deploying_elementa_and_bc101...",
-        "> executing_flawlessly.exe",
-        "> creativity_bounds = null;"
+        "> booting yassinr.me // uos_compeng...",
+        "> navicampus_router: online [0ms latency]",
+        "> blackboarder_mv3: 724_tests [PASS]",
+        "> sync_vault: aes-256-gcm [VERIFIED]",
+        "> digital_reach: 500000+; status: open"
     ];
 
     const typewriterEl = document.getElementById("typewriter-text");
@@ -475,7 +400,7 @@ const curtainText = document.getElementById('curtain-text');
 const upBtn = document.getElementById('mobile-up');
 const downBtn = document.getElementById('mobile-down');
 
-const sectionTitles = ["HOME", "PROFILE", "EXPERIENCE", "PROJECTS", "CAPABILITIES", "EDUCATION"];
+const sectionTitles = ["HOME", "PROJECTS", "EXPERIENCE", "ABOUT"];
 let currentIndex = 0;
 let isAnimating = false;
 let navigationCooldownUntil = 0;
@@ -523,7 +448,7 @@ function gotoPanel(index, direction) {
     if (index < 0 || index >= panels.length) return;
     
     isAnimating = true;
-    navigationCooldownUntil = now + 950; // Adjusted for 1.6x speed
+    navigationCooldownUntil = now + 680;
     document.body.classList.add('is-transitioning');
     
     const title = sectionTitles[index] || "LOADING";
@@ -554,9 +479,9 @@ function gotoPanel(index, direction) {
         }
     });
 
-    tl.to(curtain, { y: "0%", duration: 0.38, ease: "power4.inOut" })
-      .to(curtainText, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" })
-      .to(curtainText, { fill: "var(--secondary)", duration: 0.25, ease: "power2.out" }, "-=0.15")
+    tl.to(curtain, { y: "0%", duration: 0.28, ease: "power4.inOut" })
+      .to(curtainText, { strokeDashoffset: 0, duration: 0.34, ease: "power2.inOut" })
+      .to(curtainText, { fill: "var(--secondary)", duration: 0.18, ease: "power2.out" }, "-=0.1")
       .add(() => {
           panels.forEach((p, i) => {
               if (i === index) p.classList.add('active');
@@ -585,8 +510,8 @@ function gotoPanel(index, direction) {
           window.scrollTo(0, 0); 
           ScrollTrigger.refresh(); 
       })
-      .to({}, { duration: 0.12 })
-      .to(curtain, { y: direction === 1 ? "-100%" : "100%", duration: 0.38, ease: "power4.inOut" })
+      .to({}, { duration: 0.08 })
+      .to(curtain, { y: direction === 1 ? "-100%" : "100%", duration: 0.28, ease: "power4.inOut" })
       .set(curtain, { display: "none" })
       .add(() => {
           // Fix cursor state falling backward on transitions

@@ -50,7 +50,7 @@ export const KNOWLEDGE_BASE = [
       "NaviCampus is my flagship spatial mapping and climate-aware campus navigation platform.",
       "I built it specifically to solve extreme desert heat across UAE universities using a custom 'Coolest Route' algorithm through air-conditioned skywalks and shaded concourses.",
       "It also features a strict 'Step-Free' accessibility engine for mobility-impaired students and an in-browser vector topology compiler that runs multi-floor pathfinding with zero server latency.",
-      "You can test the production system right now at <a href='https://navicampus.app/' target='_blank' rel='noopener' class='tw-link'>navicampus.app</a> or inspect the card in the <a href='#projects' class='tw-link' data-nav-index='3'>Projects section</a>."
+      "You can test the production system right now at <a href='https://navicampus.app/' target='_blank' rel='noopener' class='tw-link'>navicampus.app</a> or inspect the card in the <a href='#projects' class='tw-link' data-nav-index='1'>Projects section</a>."
     ],
     followups: ["What tech stack powers NaviCampus?", "Tell me about Blackboarder", "What roles are you looking for?"]
   },
@@ -59,9 +59,9 @@ export const KNOWLEDGE_BASE = [
     keywords: ["blackboarder", "blackboard", "extension", "chrome", "lms", "arabic", "bilingual", "nlp", "gpa", "gradebook", "vitest"],
     bubbles: [
       "Blackboarder is my bilingual academic sidekick extension for Blackboard Learn Ultra.",
-      "It features a custom local NLP parser that extracts buried exam deadlines and room changes from unstructured announcements in both Arabic (like 'الأحد بعد القادم') and English.",
-      "It also computes weighted cumulative GPA projections on the UOS 4.0 scale and syncs across devices via private 10-character cryptographic keys.",
-      "The codebase has over 528 Vitest tests. Install it from the <a href='https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb' target='_blank' rel='noopener' class='tw-link'>Chrome Web Store</a>, check out the <a href='https://blackboarder.pages.dev/' target='_blank' rel='noopener' class='tw-link'>official site</a>, or view the repo on <a href='https://github.com/yvs1n/blackboarder-extension' target='_blank' rel='noopener' class='tw-link'>GitHub</a>."
+      "It features a custom local NLP parser that extracts buried exam deadlines and room changes from unstructured announcements in both Arabic (like 'الأحد بعد القادم') and English across 7 UAE universities.",
+      "It also computes weighted cumulative GPA projections on the UOS 4.0 scale and syncs end-to-end encrypted (AES-256-GCM) across devices via private 10-character keys.",
+      "The codebase has over 724 Vitest tests. Install it from the <a href='https://chromewebstore.google.com/detail/kciflchaejgedgjookkmnkgjhbhhabjb' target='_blank' rel='noopener' class='tw-link'>Chrome Web Store</a>, check out the <a href='https://blackboarder.pages.dev/' target='_blank' rel='noopener' class='tw-link'>official site</a>, or view the repo on <a href='https://github.com/yvs1n/blackboarder-extension' target='_blank' rel='noopener' class='tw-link'>GitHub</a>."
     ],
     followups: ["Tell me about NaviCampus", "What is your tech stack?", "How do I reach you?"]
   },
@@ -71,7 +71,7 @@ export const KNOWLEDGE_BASE = [
     bubbles: [
       "That's definitely a split between <strong>NaviCampus</strong> and <strong>Blackboarder</strong>, but for different reasons.",
       "NaviCampus tackled complex spatial graph algorithms and indoor climate routing for hundreds of students under 45°C heat.",
-      "Blackboarder, on the other hand, pushed my bilingual NLP and browser extension engineering with 528 automated tests and live gradebook synchronization.",
+      "Blackboarder, on the other hand, pushed my bilingual NLP and browser extension engineering with 724+ automated tests and encrypted multi-device synchronization.",
       "Both solve real, everyday friction on campus rather than being toy demo apps."
     ],
     followups: ["Tell me about NaviCampus", "Tell me about Blackboarder", "What is your tech stack?"]
@@ -126,7 +126,7 @@ export const KNOWLEDGE_BASE = [
       "1. <a href='https://navicampus.app/' target='_blank' rel='noopener' class='tw-link'>NaviCampus</a> — Climate-aware multi-floor navigation engine.",
       "2. <a href='https://blackboarder.pages.dev/' target='_blank' rel='noopener' class='tw-link'>Blackboarder</a> — Academic sidekick with companion PWA.",
       "3. <a href='https://fundfair.pages.dev/' target='_blank' rel='noopener' class='tw-link'>FundFair</a> & <a href='https://ssfim.pages.dev/' target='_blank' rel='noopener' class='tw-link'>SSFIM</a> — Startup & sustainability showcases.",
-      "You can also jump directly to the <a href='#projects' class='tw-link' data-nav-index='3'>Projects section</a> to view deep technical specs."
+      "You can also jump directly to the <a href='#projects' class='tw-link' data-nav-index='1'>Projects section</a> to view deep technical specs."
     ],
     followups: ["Tell me about NaviCampus", "What is your tech stack?", "How do I reach you?"]
   },
