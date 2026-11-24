@@ -3,7 +3,7 @@
  * Wires the Neural Canvas, Hero Layout, ASCII Hologram Avatar, and Digital Twin Dock.
  */
 
-import { AsciiAvatar } from './components/ascii-avatar.js';
+import { AsciiAvatar } from './components/ascii-avatar.js?v=28';
 import { initHeroLayout, updateMobileHeroLayout } from './components/hero-layout.js';
 import { initNeuralCanvas } from './components/neural-canvas.js';
 import { initTwinDock } from './components/twin-dock.js';
