@@ -34,8 +34,7 @@ export function initHeroLayout() {
   }
 
   // Scoped spotlight glow on RAGAB (rAF-throttled, zero forced reflows)
-  const spotlightWrapper = document.querySelector('.hero-spotlight-wrapper');
-  if (spotlightWrapper) {
+  document.querySelectorAll('.hero-spotlight-wrapper').forEach((spotlightWrapper) => {
     let rafPending = false;
     let nextX = -200;
     let nextY = -200;
@@ -51,7 +50,7 @@ export function initHeroLayout() {
         spotlightWrapper.style.setProperty('--spotlight-y', `${nextY}px`);
       });
     }, { passive: true });
-  }
+  });
 
   // Sync body state for mobile navigation controls
   const homePanel = document.getElementById('home');

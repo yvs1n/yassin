@@ -50,7 +50,6 @@ export class AsciiAvatar {
   }
 
   load() {
-    this.image.crossOrigin = 'anonymous';
     this.image.onload = () => {
       const w = this.image.naturalWidth || this.image.width;
       const h = this.image.naturalHeight || this.image.height;

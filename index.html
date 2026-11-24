@@ -78,7 +78,8 @@
           "@id": "https://yassinr.me/#webpage",
           "url": "https://yassinr.me/",
           "name": "Yassin Mohamed Ragab | Computer Engineering & AI Engineer",
-          "dateModified": "2026-11-22",
+          "dateCreated": "2026-09-08T00:00:00+04:00",
+          "dateModified": "2026-11-24T21:15:00+04:00",
           "isPartOf": {
             "@id": "https://yassinr.me/#website"
           },
@@ -207,10 +208,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
+    <link rel="preload" as="image" href="img/yassin-ascii-source.webp?v=27" fetchpriority="high">
     <link rel="alternate" type="text/plain" href="https://yassinr.me/llms.txt" title="LLM-friendly portfolio summary">
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="styles/base.css?v=27">
+    <link rel="stylesheet" href="styles/hero.css?v=27">
+    <link rel="stylesheet" href="styles/twin-dock.css?v=27">
+    <link rel="stylesheet" href="styles/responsive.css?v=27">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
         rel="stylesheet">
 </head>
 
@@ -299,8 +304,6 @@
                 <!-- Giant High-Density ASCII Avatar (Centered, Perfectly Framed) -->
                 <div class="hero-avatar-stage">
                     <canvas id="ascii-avatar-canvas" aria-label="Interactive ASCII Hologram Portrait of Yassin Ragab"></canvas>
-                    <div class="hero-bg-img" style="display:none;" aria-hidden="true"></div>
-                    <span class="role-badge" style="display:none;" aria-hidden="true"></span>
                 </div>
 
                 <!-- Hero Flank: RIGHT (RAGAB with Spotlight Glow + Engineering Focus) -->
@@ -1122,10 +1125,8 @@
     </div>
 
     <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js" defer></script>
 
     <!-- Success Notification Modal -->
@@ -1139,8 +1140,8 @@
         </div>
     </div>
 
-    <script src="components/portfolio-core.js?v=21" defer></script>
-    <script type="module" src="script.js?v=21"></script>
+    <script src="components/portfolio-core.js?v=27" defer></script>
+    <script type="module" src="script.js?v=27"></script>
 </body>
 
 </html>

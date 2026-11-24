@@ -40,7 +40,8 @@ Fully responsive design that adapts its scrollytelling mechanics and navigation 
 ├── data/
 │   └── twin-knowledge.js        # Pure Data: Bio, Chip Pools & Digital Twin Q&A
 ├── components/
-│   ├── portfolio-core.js        # Base Three.js Neural Canvas, Navigation & Modals
+│   ├── portfolio-core.js        # Navigation Curtains, Cursor & Modals
+│   ├── neural-canvas.js         # Zero-Dependency 3D-Projected Neural Canvas
 │   ├── ascii-processor.js       # Pure Image-to-ASCII & 2.5D Surface Normal Math
 │   ├── ascii-avatar.js          # 60 FPS ASCII Hologram Canvas Renderer
 │   ├── twin-agent.js            # Digital Twin Keyword Matching & Cadence Engine

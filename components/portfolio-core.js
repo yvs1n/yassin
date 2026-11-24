@@ -78,293 +78,9 @@
 // Only honour the system "reduce motion" setting on touch devices (phones/tablets)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce) and (pointer: coarse)').matches;
 
-// Fade the hero photo in once it has arrived
-(function () {
-    const heroImg = document.querySelector('.hero-bg-img');
-    if (!heroImg) return;
-    const show = () => heroImg.classList.add('is-loaded');
-    if (heroImg.complete && heroImg.naturalWidth) show();
-    else heroImg.addEventListener('load', show, { once: true });
-})();
-// ════════════════════════════════════════════════════════════════
-
 gsap.registerPlugin(ScrollTrigger);
 
-// --- 1. Three.js Neural Network (Brain-like with Gyro) ---
-const canvas = document.getElementById('neural-canvas');
-const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x050505, 0.0015);
-
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-const isMobile = window.innerWidth <= 900;
-const isLowPowerDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-camera.position.z = isMobile ? 120 : 200; // Zoom in more on mobile (120 vs 200)
-
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: false,
-    alpha: true,
-    powerPreference: 'low-power'
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(isLowPowerDevice ? 1 : Math.min(window.devicePixelRatio || 1, 1.25));
-
-// ── Particle Setup (adaptive count for minimal CPU/GPU load) ────
-const PARTICLE_COUNT = isLowPowerDevice ? 92 : 124;
-const NEURON_RATIO   = 0.28;  // 28% are hub neurons
-const NEURON_RANGE   = 130;   // neurons link to each other this far
-const DENDRITE_RANGE = 60;    // neurons link to satellites this far
-
-const positions  = new Float32Array(PARTICLE_COUNT * 3);
-const velocities = [];
-const types      = []; // 'neuron' | 'satellite'
-const sizes      = new Float32Array(PARTICLE_COUNT);
-const colors     = new Float32Array(PARTICLE_COUNT * 3);
-
-for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const spreadScale = isMobile ? 0.6 : 1.0;
-    positions[i * 3]     = (Math.random() - 0.5) * (700 * spreadScale);
-    positions[i * 3 + 1] = (Math.random() - 0.5) * (700 * spreadScale);
-    positions[i * 3 + 2] = (Math.random() - 0.5) * (500 * spreadScale);
-
-    const isNeuron = Math.random() < NEURON_RATIO;
-    types.push(isNeuron ? 'neuron' : 'satellite');
-
-    // Neurons: slower movement, satellites: slightly faster / more random
-    const speed = isNeuron ? 0.2 : 0.35;
-    velocities.push({
-        x: (Math.random() - 0.5) * speed,
-        y: (Math.random() - 0.5) * speed,
-        z: (Math.random() - 0.5) * speed
-    });
-
-    // Sizes
-    const sizeBaseScale = isMobile ? 1.8 : 1.0;
-    sizes[i] = (isNeuron ? 3.5 : 1.2) * sizeBaseScale;
-
-    // Colors: neurons = off-white bright, satellites = dim grey
-    const brightness = isNeuron ? 0.9 + Math.random() * 0.1 : 0.25 + Math.random() * 0.2;
-    colors[i * 3]     = brightness;
-    colors[i * 3 + 1] = brightness;
-    colors[i * 3 + 2] = brightness;
-}
-
-// ── Point Cloud ─────────────────────────────────────────────────
-const pointGeo = new THREE.BufferGeometry();
-pointGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-pointGeo.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
-
-const pointMat = new THREE.PointsMaterial({
-    vertexColors: true,
-    size: 2.5,
-    transparent: true,
-    opacity: 0.85,
-    sizeAttenuation: true
-});
-const pointCloud = new THREE.Points(pointGeo, pointMat);
-scene.add(pointCloud);
-
-// ── Line segments (neuron-to-neuron) ────────────────────────────
-const neuronLineMat = new THREE.LineBasicMaterial({
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.22
-});
-// Line buffers are allocated once and reused every frame (sized cleanly for low VRAM).
-const MAX_SEG_FLOATS = PARTICLE_COUNT * 18 * 6;
-function makeLineGeo() {
-    const geo  = new THREE.BufferGeometry();
-    const attr = new THREE.BufferAttribute(new Float32Array(MAX_SEG_FLOATS), 3);
-    attr.setUsage(THREE.DynamicDrawUsage);
-    geo.setAttribute('position', attr);
-    geo.setDrawRange(0, 0);
-    return geo;
-}
-const neuronLineGeo = makeLineGeo();
-const neuronLines   = new THREE.LineSegments(neuronLineGeo, neuronLineMat);
-scene.add(neuronLines);
-
-// ── Line segments (neuron-to-satellite dendrites) ───────────────
-const dendriteLineMat = new THREE.LineBasicMaterial({
-    color: 0x888888,
-    transparent: true,
-    opacity: 0.09
-});
-const dendriteLineGeo = makeLineGeo();
-const dendriteLines   = new THREE.LineSegments(dendriteLineGeo, dendriteLineMat);
-scene.add(dendriteLines);
-
-// ── Input (mouse + gyro) ────────────────────────────────────────
-let mouseX = 0, mouseY = 0;
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
-let gyroEnabled = false;
-
-function gyroHandler(e) {
-    if (e.gamma !== null && e.gamma !== undefined && e.beta !== null && e.beta !== undefined) {
-        gyroEnabled = true;
-        // Sensitivity scaling
-        mouseX = e.gamma * 12;
-        mouseY = (e.beta - 45) * 12;
-    }
-}
-
-function enableGyro() {
-    console.log("Gyro initialization requested...");
-    if (typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // iOS 13+ — must request permission
-        DeviceOrientationEvent.requestPermission()
-            .then(state => {
-                console.log("Gyro Permission State:", state);
-                if (state === 'granted') {
-                    window.addEventListener('deviceorientation', gyroHandler);
-                    console.log("Motion sensors enabled!");
-                } else {
-                    console.log("Motion permission denied.");
-                }
-            })
-            .catch((err) => {
-                console.error("Gyro Permission Error:", err);
-            });
-    } else {
-        // Android / non-iOS / Older iOS — no permission needed
-        console.log("Gyro: Permission not required (likely Android or Desktop)");
-        window.addEventListener('deviceorientation', gyroHandler);
-    }
-}
-
-// Trigger on first click/touch — required for permission dialog
-document.addEventListener('click', enableGyro, { once: true });
-document.addEventListener('touchstart', enableGyro, { once: true });
-
-// Mouse follows cursor on non-touch
-document.addEventListener('mousemove', (e) => {
-    if (gyroEnabled) return; // don't override gyro
-    mouseX = (e.clientX - windowHalfX) * 0.5;
-    mouseY = (e.clientY - windowHalfY) * 0.5;
-}, { passive: true });
-
-window.addEventListener('resize', () => {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    if (prefersReducedMotion) renderFrame(false, 1);
-}, { passive: true });
-
-// ── Animation Loop (30 FPS cap + tab visibility pause) ─────────
-const NEURON_RANGE_SQ   = NEURON_RANGE * NEURON_RANGE;
-const DENDRITE_RANGE_SQ = DENDRITE_RANGE * DENDRITE_RANGE;
-const neuronBuf   = neuronLineGeo.attributes.position;
-const dendriteBuf = dendriteLineGeo.attributes.position;
-const NEURAL_FRAME_MS = 1000 / 30;
-let lastNeuralTime = performance.now();
-
-function pushSeg(arr, n, pos, i, j) {
-    if (n + 6 > arr.length) return n;
-    arr[n]     = pos[i*3]; arr[n + 1] = pos[i*3+1]; arr[n + 2] = pos[i*3+2];
-    arr[n + 3] = pos[j*3]; arr[n + 4] = pos[j*3+1]; arr[n + 5] = pos[j*3+2];
-    return n + 6;
-}
-
-function animateMesh(now) {
-    requestAnimationFrame(animateMesh);
-    if (document.hidden) return;
-    const elapsed = now - lastNeuralTime;
-    if (elapsed < NEURAL_FRAME_MS) return;
-    lastNeuralTime = now - (elapsed % NEURAL_FRAME_MS);
-    const timeScale = Math.min(elapsed / 16.6667, 2.5);
-    renderFrame(true, timeScale);
-}
-
-function renderFrame(move, timeScale = 1) {
-
-    // Gentle drift rotation
-    const rotStep = 0.0005 * timeScale;
-    pointCloud.rotation.y += rotStep;
-    neuronLines.rotation.y  += rotStep;
-    dendriteLines.rotation.y += rotStep;
-
-    // ── Interaction Modes ─────────────────────────────────────
-    if (gyroEnabled) {
-        // MOBILE / GYRO: Use stable rotation to prevent "zoom"
-        const targetRotX = -mouseY * 0.0003;
-        const targetRotY = mouseX * 0.0003;
-        
-        scene.rotation.x += (targetRotX - scene.rotation.x) * 0.05;
-        scene.rotation.y += (targetRotY - scene.rotation.y) * 0.05;
-
-        // Ensure camera position is centered for rotation mode
-        camera.position.x += (0 - camera.position.x) * 0.05;
-        camera.position.y += (0 - camera.position.y) * 0.05;
-    } else {
-        // DESKTOP / MOUSE: Use deep position parallax
-        camera.position.x += (mouseX - camera.position.x) * 0.025;
-        camera.position.y += (-mouseY - camera.position.y) * 0.025;
-        
-        // Ensure scene rotation is reset for position mode
-        scene.rotation.x += (0 - scene.rotation.x) * 0.05;
-        scene.rotation.y += (0 - scene.rotation.y) * 0.05;
-    }
-
-    camera.lookAt(scene.position);
-
-    // Move particles
-    const pos = pointCloud.geometry.attributes.position.array;
-    const nArr = neuronBuf.array;
-    const dArr = dendriteBuf.array;
-    let nLen = 0, dLen = 0;
-
-    if (move) {
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            pos[i*3]   += velocities[i].x * timeScale;
-            pos[i*3+1] += velocities[i].y * timeScale;
-            pos[i*3+2] += velocities[i].z * timeScale;
-
-            if (Math.abs(pos[i*3])   > 350) velocities[i].x *= -1;
-            if (Math.abs(pos[i*3+1]) > 350) velocities[i].y *= -1;
-            if (Math.abs(pos[i*3+2]) > 250) velocities[i].z *= -1;
-        }
-    }
-
-    // Build connections - only from neurons outward
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        if (types[i] !== 'neuron') continue;
-
-        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
-            const dx = pos[i*3]   - pos[j*3];
-            const dy = pos[i*3+1] - pos[j*3+1];
-            const dz = pos[i*3+2] - pos[j*3+2];
-            const distSq = dx*dx + dy*dy + dz*dz;
-
-            if (types[j] === 'neuron') {
-                if (distSq < NEURON_RANGE_SQ) nLen = pushSeg(nArr, nLen, pos, i, j);   // bright axon
-            } else if (distSq < DENDRITE_RANGE_SQ) {
-                dLen = pushSeg(dArr, dLen, pos, i, j);                                  // faint dendrite
-            }
-        }
-    }
-
-    pointCloud.geometry.attributes.position.needsUpdate = true;
-    // Only upload the part of each buffer that is in use this frame
-    neuronBuf.updateRange.offset = 0;
-    neuronBuf.updateRange.count = nLen;
-    neuronBuf.needsUpdate = nLen > 0;
-    dendriteBuf.updateRange.offset = 0;
-    dendriteBuf.updateRange.count = dLen;
-    dendriteBuf.needsUpdate = dLen > 0;
-    neuronLineGeo.setDrawRange(0, nLen / 3);
-    dendriteLineGeo.setDrawRange(0, dLen / 3);
-
-    renderer.render(scene, camera);
-}
-
-if (prefersReducedMotion) renderFrame(false, 1); // one still frame, no drift
-else requestAnimationFrame(animateMesh);
-
-// --- 2. Interface Interactions ---
+// --- 1. Interface Interactions ---
 document.addEventListener('DOMContentLoaded', function () {
     // Modal Logic
     const openBtn = document.getElementById('open-contact-btn');
@@ -684,21 +400,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Hero entrance fires AFTER preloader exits
 function triggerHeroAnimations() {
-    gsap.from(".role-badge", {
-        opacity: 0,
-        y: 15,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-        delay: 0.3
-    });
-
     gsap.from(".scroll-indicator", {
         opacity: 0,
         y: 20,
-        duration: 1.5,
+        duration: 1.2,
         ease: "power3.out",
-        delay: 0.5
+        delay: 0.3
     });
 }
 
@@ -759,20 +466,8 @@ magnetics.forEach(btn => {
     }, { passive: true });
 });
 
-// Hero Parallax Scrubbing
-if (!prefersReducedMotion) gsap.to(".hero-bg-img", {
-    scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-    },
-    y: 150,
-    scale: 1.0
-});
-
-// --- 4. GSAP Observer & Panel Snapping (Revil Sketch Effect) ---
-gsap.registerPlugin(Observer, ScrollToPlugin);
+// --- 3. GSAP Observer & Panel Snapping (Revil Sketch Effect) ---
+gsap.registerPlugin(Observer);
 
 const panels = gsap.utils.toArray('.panel');
 const curtain = document.querySelector('.transition-curtain');
@@ -933,32 +628,6 @@ function showNavNudge() {
 }
 
 
-
-/* --- 5. Scroll Mode Toggle (DISABLED) ---
-const scrollToggle = document.getElementById('scroll-mode-toggle');
-const btnText = scrollToggle.querySelector('.btn-text');
-const btnIcon = scrollToggle.querySelector('.btn-icon');
-
-scrollToggle.addEventListener('click', () => {
-    const isClassic = document.body.classList.toggle('classic-scroll');
-    
-    if (isClassic) {
-        scrollObserver.disable();
-        btnText.textContent = "CLASSIC";
-        btnIcon.textContent = "☵";
-        window.scrollTo(0, 0); 
-    } else {
-        scrollObserver.enable();
-        btnText.textContent = "DYNAMIC";
-        btnIcon.textContent = "◈";
-        panels.forEach((p, i) => {
-            if (i === currentIndex) p.classList.add('active');
-            else p.classList.remove('active');
-        });
-        window.scrollTo(0, 0);
-    }
-});
-*/
 
 // 1. Mouse Wheel Observer (Desktop)
 const scrollObserver = Observer.create({
